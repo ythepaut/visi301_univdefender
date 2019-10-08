@@ -15,14 +15,14 @@ pygame.init()
 fenetre = pygame.display.set_mode((1080, 720))
 
 affichage = Affichage(fenetre)
-carte = Carte([[1, 130], [130, 775], [775, 490], [1, 490]], "resources/img/carte1.png")
+carte = Carte([[1, 130], [775, 130], [775, 490], [1, 490]], "resources/img/carte1.png")
 partie = Partie(carte)
 
 
 execution = True
 
 while execution:
-    pygame.time.delay(10)
+    pygame.time.delay(5)
 
     partie.rafraichir()
 
@@ -38,6 +38,7 @@ while execution:
         if evenement.key == pygame.K_e:
             etudiant = Etudiant(partie.carte.chemin[0], partie)
             partie.ajouterEtudiant(etudiant)
+
 
 
 

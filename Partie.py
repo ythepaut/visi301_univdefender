@@ -8,6 +8,9 @@ class Partie:
 
     def ajouterEtudiant(self, etudiant):
         self.etudiants += [etudiant]
+    
+    def retirerEtudiant(self, etudiant):
+        self.etudiants.remove(etudiant)
 
 
 
