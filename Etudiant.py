@@ -28,4 +28,4 @@ class Etudiant:
             deplacement_x = max(-1, min(1, dir_x))
             deplacement_y = max(-1, min(1, dir_y))
 
-            self.coords = [self.coords[0] + deplacement_x * 2, self.coords[1] + deplacement_y * 2]
+            self.coords = [self.coords[0] + deplacement_x, self.coords[1] + deplacement_y]
