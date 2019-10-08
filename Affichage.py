@@ -12,7 +12,7 @@ class Affichage:
         self.fenetre = fenetre
 
 
-        pygame.display.set_caption("Tower Defense")
+        pygame.display.set_caption("Univ Defender")
 
 
     def rafraichirEcran(self, partie):
