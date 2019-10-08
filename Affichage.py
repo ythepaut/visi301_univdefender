@@ -23,6 +23,6 @@ class Affichage:
             
             for etudiant in partie.etudiants:
                 img_etudiant = pygame.image.load(os.path.join("resources", "img", "etudiant.png"))
-                self.fenetre.blit(img_etudiant, (etudiant.coords[0], etudiant.coords[1]))
+                self.fenetre.blit(img_etudiant, (etudiant.coords[0] - 20, etudiant.coords[1] - 20))
             
             pygame.display.update()
