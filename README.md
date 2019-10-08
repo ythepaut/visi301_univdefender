@@ -1,1 +1,3 @@
 # visi301_univdefender
+
+Les élèves de l'université on décidés de se rebeller suite à leurs mauvaises notes et s'attaquent à la scolarité pour modifier leur note et valider leur semestre. Les professeurs sont le dernier rempart qui les en sépare...
