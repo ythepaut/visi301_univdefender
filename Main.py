@@ -31,6 +31,7 @@ while execution:
 
     clock.tick(ECRAN_IPS)  #Frequence d'affichage ecran
 
+
     partie.rafraichir()
     affichage.rafraichir_ecran(partie)
 

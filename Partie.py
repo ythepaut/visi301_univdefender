@@ -13,6 +13,7 @@ class Partie:
         #Attributs
         self.carte = carte
         self.etudiants = []
+        self.enseignants = []
         self.statut = Statut.ENTRE_VAGUE
         self.timer = 10
         self.vague = 0
@@ -30,6 +31,18 @@ class Partie:
         :param etudiant: Etudiant à retirer."""
         self.etudiants.remove(etudiant)
         del etudiant
+
+
+    def ajouter_enseignant(self, enseignant):
+        """Procedure : Ajouter un enseignant dans la partie
+        :param enseignant: Enseignant à ajouter."""
+        self.enseignants += [enseignant]
+
+    def retirer_enseignant(self, enseignant):
+        """Procedure : Retirer un enseignant de la partie
+        :param enseignant: Enseignant à retirer."""
+        self.enseignants.remove(enseignant)
+        del enseignant
 
 
 
@@ -75,6 +88,7 @@ def nouvelle_vague(self):
         etudiant = Etudiant(self.carte.chemin[0], self)
         self.ajouter_etudiant(etudiant)
 
+        test(pygame.time.get_ticks() + 1000)
         #TODO AJOUTER ATTENTE ENTRE CHAQUE APPARITION
 
     #TODO GESTION DES AUTRES ETUDIANTS
@@ -91,3 +105,8 @@ def vague_etudiant(vague):
     resultat = [(vague * 5) % 20, vague - 1, vague // 20]
 
     return resultat
+
+def test(delai):
+    while pygame.time.get_ticks() < delai:
+        pass
+    print("test")
