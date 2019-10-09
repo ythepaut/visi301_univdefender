@@ -28,7 +28,7 @@ class Etudiant:
                 self.point_passage += 1
 
 
-            deplacement_x = max(-1, min(1, dir_x))
-            deplacement_y = max(-1, min(1, dir_y))
+            dx = max(-1, min(1, dir_x))
+            dy = max(-1, min(1, dir_y))
 
-            self.coords = [self.coords[0] + deplacement_x, self.coords[1] + deplacement_y]
+            self.coords = [self.coords[0] + dx, self.coords[1] + dy]
