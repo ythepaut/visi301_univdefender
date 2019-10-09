@@ -11,25 +11,28 @@ from Affichage import Affichage
 from Carte import Carte
 from Etudiant import Etudiant
 from Partie import Partie
-from Utils import Utils
 
+ECRAN_X = 1080
+ECRAN_Y = 720
+ECRAN_IPS = 60
 
 pygame.init()
-fenetre = pygame.display.set_mode((1080, 720))
+fenetre = pygame.display.set_mode((ECRAN_X, ECRAN_Y))
 
 affichage = Affichage(fenetre)
 carte = Carte([[1, 130], [775, 130], [775, 490], [1, 490]], os.path.join("resources", "img", "carte1.png"))
 partie = Partie(carte)
 
-
 execution = True
 
-
+clock = pygame.time.Clock()
 
 while execution:
 
-    affichage.rafraichir_ecran(partie)
+    clock.tick(ECRAN_IPS)  #Frequence d'affichage ecran
+
     partie.rafraichir()
+    affichage.rafraichir_ecran(partie)
 
 
     # LISTENER - Ecoute des évenements
@@ -37,14 +40,10 @@ while execution:
         if evenement.type == pygame.QUIT or (evenement.type == pygame.KEYDOWN and evenement.key == pygame.K_ESCAPE):
             execution = False
 
-
-    if evenement.type == pygame.KEYDOWN:        #Ajout etudiant
-        if evenement.key == pygame.K_e:
-            etudiant = Etudiant(partie.carte.chemin[0], partie)
-            partie.ajouter_etudiant(etudiant)
-
-    #Utils.update_ticks(Utils)
-
+        if evenement.type == pygame.KEYDOWN:        #Ajout etudiant
+            if evenement.key == pygame.K_e:
+                etudiant = Etudiant(partie.carte.chemin[0], partie)
+                partie.ajouter_etudiant(etudiant)
 
 
 pygame.quit()

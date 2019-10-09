@@ -15,7 +15,7 @@ class Etudiant:
 
         if self.point_passage >= len(self.partie.carte.chemin) - 1: #Dernier point passage atteint ?
 
-            self.partie.retirerEtudiant(self)
+            self.partie.retirer_etudiant(self)
 
         else:
 

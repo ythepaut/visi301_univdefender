@@ -1,8 +1,7 @@
-from enums.Statut import Statut
 import pygame
 
+from enums.Statut import Statut
 from Etudiant import Etudiant
-from Utils import Utils
 
 class Partie:
     """Classe Partie : Gestion de la partie."""
@@ -17,13 +16,14 @@ class Partie:
         self.statut = Statut.ENTRE_VAGUE
         self.timer = 10
         self.vague = 0
+        self.dernier_seconde = pygame.time.get_ticks()
 
 
     def ajouter_etudiant(self, etudiant):
         """Procedure : Ajouter un etudiant dans la partie
         :param etudiant: Etudiant à ajouter."""
         self.etudiants += [etudiant]
-        print("etu")
+        print("AJOUT Etudiant")
 
     def retirer_etudiant(self, etudiant):
         """Procedure : Retirer un etudiant de la partie
@@ -41,7 +41,6 @@ class Partie:
             for etudiant in self.etudiants:
                 etudiant.avancer()
 
-
         else:
 
             if self.statut == Statut.VAGUE: #Fin de vague
@@ -49,12 +48,14 @@ class Partie:
                 self.timer = 10
                 print("Fin de la vague.")
             elif self.statut == Statut.ENTRE_VAGUE and self.timer > 0:
-                self.timer -= 1
-                print("Nouvelle vague dans ", self.timer)
 
-                ticks = Utils.ticks
-                while Utils.sleep(Utils, 1000, ticks):
-                    Utils.update_ticks(Utils)
+                mtn = pygame.time.get_ticks()               #
+                if mtn - self.dernier_seconde >= 1000:      #Delai entre vague
+                    self.dernier_seconde = mtn              #
+
+                    self.timer -= 1
+                    print("Nouvelle vague dans ", self.timer)
+
 
             elif self.statut == Statut.ENTRE_VAGUE and self.timer <= 0:
                 self.statut = Statut.VAGUE
@@ -69,31 +70,14 @@ def nouvelle_vague(self):
     self.vague += 1
 
     effectifs = vague_etudiant(self.vague)
-    
-    for i in range(0, effectifs[0]): #Apparition etudiants 1 standart
+
+    for _ in range(0, effectifs[0]): #Apparition etudiants 1 standart
         etudiant = Etudiant(self.carte.chemin[0], self)
         self.ajouter_etudiant(etudiant)
 
-        ticks = Utils.ticks
-        while Utils.sleep(Utils, 500, ticks):
-            Utils.update_ticks(Utils)
+        #TODO AJOUTER ATTENTE ENTRE CHAQUE APPARITION
 
-    for i in range(0, effectifs[0]): #Apparition etudiants 2 moyen TODO
-        etudiant = Etudiant(self.carte.chemin[0], self)
-        self.ajouter_etudiant(etudiant)
-
-        ticks = Utils.ticks
-        while Utils.sleep(Utils, 500, ticks):
-            Utils.update_ticks(Utils)
-
-
-    for i in range(0, effectifs[0]): #Apparition etudiants 1 fort TODO
-        etudiant = Etudiant(self.carte.chemin[0], self)
-        self.ajouter_etudiant(etudiant)
-
-        ticks = Utils.ticks
-        while Utils.sleep(Utils, 500, ticks):
-            Utils.update_ticks(Utils)
+    #TODO GESTION DES AUTRES ETUDIANTS
 
 
 def vague_etudiant(vague):
