@@ -10,6 +10,7 @@ import pygame
 from Affichage import Affichage
 from Carte import Carte
 from Etudiant import Etudiant
+from Enseignant import Enseignant
 from Partie import Partie
 
 ECRAN_X = 1080
@@ -41,10 +42,14 @@ while execution:
         if evenement.type == pygame.QUIT or (evenement.type == pygame.KEYDOWN and evenement.key == pygame.K_ESCAPE):
             execution = False
 
-        if evenement.type == pygame.KEYDOWN:        #Ajout etudiant
+        if evenement.type == pygame.KEYDOWN:        #TEMP : Ajout manuel etudiant
             if evenement.key == pygame.K_e:
                 etudiant = Etudiant(partie.carte.chemin[0], partie)
                 partie.ajouter_etudiant(etudiant)
 
+        if evenement.type == pygame.MOUSEBUTTONDOWN:#TEMP : Ajout manuel enseignant
+            x, y = pygame.mouse.get_pos()
+            enseignant = Enseignant([x, y], partie)
+            partie.ajouter_enseignant(enseignant)
 
 pygame.quit()
