@@ -11,6 +11,7 @@ from Affichage import Affichage
 from Carte import Carte
 from Etudiant import Etudiant
 from Partie import Partie
+from Utils import Utils
 
 
 pygame.init()
@@ -23,9 +24,11 @@ partie = Partie(carte)
 
 execution = True
 
+
+
 while execution:
 
-    affichage.rafraichirEcran(partie)
+    affichage.rafraichir_ecran(partie)
     partie.rafraichir()
 
 
@@ -38,8 +41,9 @@ while execution:
     if evenement.type == pygame.KEYDOWN:        #Ajout etudiant
         if evenement.key == pygame.K_e:
             etudiant = Etudiant(partie.carte.chemin[0], partie)
-            partie.ajouterEtudiant(etudiant)
+            partie.ajouter_etudiant(etudiant)
 
+    #Utils.update_ticks(Utils)
 
 
 
