@@ -4,9 +4,12 @@ import pygame
 from Etudiant import Etudiant
 
 class Partie:
+    """Classe Partie : Gestion de la partie."""
 
 
     def __init__(self, carte):
+        """Constructeur classe Partie
+        :param carte: Carte sur laquelle la partie se joue."""
         #Attributs
         self.carte = carte
         self.etudiants = []
@@ -15,15 +18,20 @@ class Partie:
 
 
     def ajouterEtudiant(self, etudiant):
+        """Procedure : Ajouter un etudiant dans la partie
+        :param etudiant: Etudiant à ajouter."""
         self.etudiants += [etudiant]
 
     def retirerEtudiant(self, etudiant):
+        """Procedure : Retirer un etudiant de la partie
+        :param etudiant: Etudiant à retirer."""
         self.etudiants.remove(etudiant)
         del etudiant
 
 
 
     def rafraichir(self):
+        """Procedure : Fait avancer le jeu (Temps entre-vague, faire avancer les etudiant, faire tirer les profs...)"""
 
         if len(self.etudiants) > 0:
 
