@@ -28,5 +28,5 @@ class Affichage:
                 self.fenetre.blit(img_etudiant, (etudiant.coords[0] - 20, etudiant.coords[1] - 20))
 
             pygame.display.update()
-            print("update")
+            print("MAJ Affichage")
             Utils.update_ticks(Utils)
