@@ -13,6 +13,7 @@ from Etudiant import Etudiant
 from Enseignant import Enseignant
 from Partie import Partie
 
+#Constantes
 ECRAN_X = 1080
 ECRAN_Y = 720
 ECRAN_IPS = 60
@@ -21,7 +22,7 @@ pygame.init()
 fenetre = pygame.display.set_mode((ECRAN_X, ECRAN_Y))
 
 affichage = Affichage(fenetre)
-carte = Carte([[1, 130], [775, 130], [775, 490], [1, 490]], os.path.join("resources", "img", "carte1.png"))
+carte = Carte([[1, 130], [775, 130], [775, 490], [1, 490]], os.path.join("ressources", "img", "carte1.png"))
 partie = Partie(carte)
 
 execution = True
@@ -49,7 +50,7 @@ while execution:
 
         if evenement.type == pygame.MOUSEBUTTONDOWN:#TEMP : Ajout manuel enseignant
             x, y = pygame.mouse.get_pos()
-            enseignant = Enseignant([x, y], partie)
+            enseignant = Enseignant([x - 20, y - 20], partie)
             partie.ajouter_enseignant(enseignant)
 
 pygame.quit()

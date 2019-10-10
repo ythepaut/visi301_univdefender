@@ -25,12 +25,12 @@ class Affichage:
 
             #Actualisation etudiants
             for etudiant in partie.etudiants:
-                img_etudiant = pygame.image.load(os.path.join("resources", "img", "etudiant.png"))
+                img_etudiant = pygame.image.load(os.path.join("ressources", "img", "etudiant.png"))
                 self.fenetre.blit(img_etudiant, (etudiant.coords[0] - 20, etudiant.coords[1] - 20))
 
             #Actualisation enseignants
             for enseignant in partie.enseignants:
-                img_enseignant = pygame.image.load(os.path.join("resources", "img", "enseignant.png"))
+                img_enseignant = pygame.image.load(os.path.join("ressources", "img", "enseignant.png"))
                 self.fenetre.blit(img_enseignant, (enseignant.coords[0], enseignant.coords[1]))
 
             pygame.display.update()
