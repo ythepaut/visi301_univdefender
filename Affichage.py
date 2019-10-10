@@ -30,11 +30,7 @@ class Affichage:
 
             #Actualisation enseignants
             for enseignant in partie.enseignants:
-<<<<<<< HEAD
                 img_enseignant = pygame.image.load(os.path.join("ressources", "img", "enseignant.png"))
-=======
-                img_enseignant = pygame.image.load(os.path.join("resources", "img", "enseignant.png"))
->>>>>>> 1773197d3db4294aa2bfb8550c486ddf34363fac
                 self.fenetre.blit(img_enseignant, (enseignant.coords[0], enseignant.coords[1]))
 
             pygame.display.update()
