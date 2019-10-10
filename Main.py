@@ -13,7 +13,10 @@ from Etudiant import Etudiant
 from Enseignant import Enseignant
 from Partie import Partie
 
+<<<<<<< HEAD
 #Constantes
+=======
+>>>>>>> 1773197d3db4294aa2bfb8550c486ddf34363fac
 ECRAN_X = 1080
 ECRAN_Y = 720
 ECRAN_IPS = 60
@@ -50,7 +53,11 @@ while execution:
 
         if evenement.type == pygame.MOUSEBUTTONDOWN:#TEMP : Ajout manuel enseignant
             x, y = pygame.mouse.get_pos()
+<<<<<<< HEAD
             enseignant = Enseignant([x - 20, y - 20], partie)
+=======
+            enseignant = Enseignant([x, y], partie)
+>>>>>>> 1773197d3db4294aa2bfb8550c486ddf34363fac
             partie.ajouter_enseignant(enseignant)
 
 pygame.quit()
