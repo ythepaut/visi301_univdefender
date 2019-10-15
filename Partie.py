@@ -1,9 +1,10 @@
 import pygame
+import threading
 
 from enums.Statut import Statut
 from Etudiant import Etudiant
 
-class Partie:
+class Partie():
     """Classe Partie : Gestion de la partie."""
 
 
@@ -18,13 +19,13 @@ class Partie:
         self.timer = 10
         self.vague = 0
         self.dernier_seconde = pygame.time.get_ticks()
+        self.file_attente_vague = []
 
 
     def ajouter_etudiant(self, etudiant):
         """Procedure : Ajouter un etudiant dans la partie
         :param etudiant: Etudiant à ajouter."""
         self.etudiants += [etudiant]
-        print("AJOUT Etudiant")
 
     def retirer_etudiant(self, etudiant):
         """Procedure : Retirer un etudiant de la partie
@@ -49,6 +50,11 @@ class Partie:
     def rafraichir(self):
         """Procedure : Fait avancer le jeu (Temps entre-vague, faire avancer les etudiant, faire tirer les profs...)"""
 
+        if (len(self.file_attente_vague) > 0 and self.file_attente_vague[0][0] <= pygame.time.get_ticks()):
+            self.ajouter_etudiant(self.file_attente_vague[0][1])
+            self.file_attente_vague.pop(0)
+
+
         if len(self.etudiants) > 0:
 
             for etudiant in self.etudiants:
@@ -66,35 +72,26 @@ class Partie:
                 if mtn - self.dernier_seconde >= 1000:      #Delai entre vague
                     self.dernier_seconde = mtn              #
 
-                    self.timer -= 1
                     print("Nouvelle vague dans ", self.timer)
+                    self.timer -= 1
 
 
             elif self.statut == Statut.ENTRE_VAGUE and self.timer <= 0:
                 self.statut = Statut.VAGUE
                 print("Nouvelle vague !")
 
-                nouvelle_vague(self)
+                #effectifs = effectifs_vague(self.vague)
+                effectifs = [5, 0, 0]
+
+                for i in range(0, effectifs[0]):
+
+                    etudiant = Etudiant(self.carte.chemin[0], self)
+                    self.file_attente_vague += [(pygame.time.get_ticks() + 500*i, etudiant)]
 
 
-def nouvelle_vague(self):
-    """Procedure qui lance une nouvelle vague d'ennemis"""
-
-    self.vague += 1
-
-    effectifs = vague_etudiant(self.vague)
-
-    for _ in range(0, effectifs[0]): #Apparition etudiants 1 standart
-        etudiant = Etudiant(self.carte.chemin[0], self)
-        self.ajouter_etudiant(etudiant)
-
-        test(pygame.time.get_ticks() + 1000)
-        #TODO AJOUTER ATTENTE ENTRE CHAQUE APPARITION
-
-    #TODO GESTION DES AUTRES ETUDIANTS
 
 
-def vague_etudiant(vague):
+def effectifs_vague(vague):
     """Fonction qui retourne le nombre d'etudiant a faire apparaitre dans la prochaine vague.
     :param vague: Entier : Numero de vague.
     :return: Tableau d'entiers : Nombre d'etudiants par type."""
@@ -106,7 +103,8 @@ def vague_etudiant(vague):
 
     return resultat
 
-def test(delai):
+
+def test_tempo(delai):
+    """Test Temporisation"""
     while pygame.time.get_ticks() < delai:
         pass
-    print("test")

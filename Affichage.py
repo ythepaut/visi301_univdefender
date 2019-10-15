@@ -34,4 +34,3 @@ class Affichage:
                 self.fenetre.blit(img_enseignant, (enseignant.coords[0], enseignant.coords[1]))
 
             pygame.display.update()
-            print("MAJ Affichage")

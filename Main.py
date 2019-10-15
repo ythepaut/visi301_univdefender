@@ -40,7 +40,7 @@ while execution:
 
     # LISTENER - Ecoute des évenements
     for evenement in pygame.event.get():
-        if evenement.type == pygame.QUIT or (evenement.type == pygame.KEYDOWN and evenement.key == pygame.K_ESCAPE):
+        if evenement.type == pygame.QUIT or (evenement.type == pygame.KEYDOWN and evenement.key == pygame.K_ESCAPE):    #Quitter la partie ?
             execution = False
 
         if evenement.type == pygame.KEYDOWN:        #TEMP : Ajout manuel etudiant
