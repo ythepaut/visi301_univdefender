@@ -12,6 +12,7 @@ class Partie():
         """Constructeur classe Partie
         :param carte: Carte sur laquelle la partie se joue."""
         #Attributs
+        self.execution = True
         self.carte = carte
         self.etudiants = []
         self.enseignants = []
@@ -20,6 +21,7 @@ class Partie():
         self.vague = 0
         self.dernier_seconde = pygame.time.get_ticks()
         self.file_attente_vague = []
+        self.vie = 10
 
 
     def ajouter_etudiant(self, etudiant):
@@ -66,6 +68,7 @@ class Partie():
                 self.statut = Statut.ENTRE_VAGUE
                 self.timer = 10
                 print("Fin de la vague.")
+
             elif self.statut == Statut.ENTRE_VAGUE and self.timer > 0:
 
                 mtn = pygame.time.get_ticks()               #
@@ -78,10 +81,10 @@ class Partie():
 
             elif self.statut == Statut.ENTRE_VAGUE and self.timer <= 0:
                 self.statut = Statut.VAGUE
+                self.vague += 1
                 print("Nouvelle vague !")
 
-                #effectifs = effectifs_vague(self.vague)
-                effectifs = [5, 0, 0]
+                effectifs = effectifs_vague(self.vague)
 
                 for i in range(0, effectifs[0]):
 
@@ -89,6 +92,14 @@ class Partie():
                     self.file_attente_vague += [(pygame.time.get_ticks() + 500*i, etudiant)]
 
 
+    def perdre_vie(self):
+        """Procedure qui fait perdre une vie au joueur et le notifie."""
+        if (self.vie == 0):
+            self.execution = False
+            print("Fin de la partie ! Vous n'avez plus de vies")
+        else:
+            self.vie -= 1
+            print("Vous avez perdu une vie ! Il vous en reste ", self.vie)
 
 
 def effectifs_vague(vague):
@@ -96,15 +107,6 @@ def effectifs_vague(vague):
     :param vague: Entier : Numero de vague.
     :return: Tableau d'entiers : Nombre d'etudiants par type."""
 
-    #5v mod 20  etudiant standart
-    #v - 1      etudiant moyen
-    #v div 20   etudiant fort
     resultat = [(vague * 5) % 20, vague - 1, vague // 20]
-
     return resultat
 
-
-def test_tempo(delai):
-    """Test Temporisation"""
-    while pygame.time.get_ticks() < delai:
-        pass

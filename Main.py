@@ -21,6 +21,7 @@ ECRAN_IPS = 60
 pygame.init()
 fenetre = pygame.display.set_mode((ECRAN_X, ECRAN_Y))
 
+
 affichage = Affichage(fenetre)
 carte = Carte([[1, 130], [775, 130], [775, 490], [1, 490]], os.path.join("ressources", "img", "carte1.png"))
 partie = Partie(carte)
@@ -52,5 +53,7 @@ while execution:
             x, y = pygame.mouse.get_pos()
             enseignant = Enseignant([x - 20, y - 20], partie)
             partie.ajouter_enseignant(enseignant)
+    
+    execution = partie.execution
 
 pygame.quit()
