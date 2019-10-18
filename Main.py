@@ -53,7 +53,7 @@ while execution:
             x, y = pygame.mouse.get_pos()
             enseignant = Enseignant([x - 20, y - 20], partie)
             partie.ajouter_enseignant(enseignant)
-    
-    execution = partie.execution
+
+    execution = execution and partie.execution 
 
 pygame.quit()

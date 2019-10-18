@@ -94,7 +94,7 @@ class Partie():
 
     def perdre_vie(self):
         """Procedure qui fait perdre une vie au joueur et le notifie."""
-        if (self.vie == 0):
+        if self.vie == 0:
             self.execution = False
             print("Fin de la partie ! Vous n'avez plus de vies")
         else:
@@ -109,4 +109,3 @@ def effectifs_vague(vague):
 
     resultat = [(vague * 5) % 20, vague - 1, vague // 20]
     return resultat
-
