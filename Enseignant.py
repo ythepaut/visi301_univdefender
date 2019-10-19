@@ -1,3 +1,4 @@
+import os
 import pygame
 
 class Enseignant:
@@ -13,6 +14,7 @@ class Enseignant:
         self.portee = 100
         self.cadance = 0.7
         self.dernier_tir = 0
+        self.sprite = os.path.join("ressources", "img", "enseignant.png")
 
 
     def tirer(self):

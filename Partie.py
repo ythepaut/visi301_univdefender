@@ -20,6 +20,7 @@ class Partie():
         self.vague = 0
         self.dernier_seconde = pygame.time.get_ticks()
         self.file_attente_vague = []
+        self.dernier_apparition = 0
         self.vie = 10
         self.argent = 100
 
@@ -54,8 +55,13 @@ class Partie():
 
         #Apparition des etudiants dans la vague
         if (len(self.file_attente_vague) > 0 and self.file_attente_vague[0][0] <= pygame.time.get_ticks()):
-            self.ajouter_etudiant(self.file_attente_vague[0][1])
-            self.file_attente_vague.pop(0)
+
+            mtn = pygame.time.get_ticks()               #
+            if mtn - self.dernier_apparition >= 500:    #Delai entre les apparitions
+                self.dernier_apparition = mtn           #
+
+                self.ajouter_etudiant(self.file_attente_vague[0][1])
+                self.file_attente_vague.pop(0)
 
         #Faire tirer les enseignants
         if len(self.enseignants) > 0:
@@ -94,10 +100,10 @@ class Partie():
 
                 effectifs = effectifs_vague(self.vague)
 
-                for i in range(0, effectifs[0]):
-
-                    etudiant = Etudiant(self.carte.chemin[0], self)
-                    self.file_attente_vague += [(pygame.time.get_ticks() + 500*i, etudiant)]
+                for i in range(len(effectifs)-1, -1, -1):
+                    for j in range(0, effectifs[i]):
+                        etudiant = Etudiant(self.carte.chemin[0], self, i+1)
+                        self.file_attente_vague += [(pygame.time.get_ticks() + 500*j, etudiant)]
 
 
     def perdre_vie(self):
@@ -115,5 +121,5 @@ def effectifs_vague(vague):
     :param vague: Entier : Numero de vague.
     :return: Tableau d'entiers : Nombre d'etudiants par type."""
 
-    resultat = [(vague * 5) % 20, vague - 1, vague // 20]
+    resultat = [(vague * 5) % 15 + 5, (vague - 1) % 25, vague // 5]
     return resultat

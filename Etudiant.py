@@ -1,14 +1,31 @@
+import os
+
 class Etudiant:
     """Classe Etudiant : Ennemis du jeu."""
 
-    def __init__(self, coords, partie):
+    def __init__(self, coords, partie, tier):
         """Constructeur classe Etudiant
         :param coords: Coordonnées initiales de l'etudiant [x,y].
         :param partie: Partie à laquelle appartient l'etudiant"""
         self.coords = coords
         self.point_passage = 0
         self.partie = partie
-        self.vie = 100
+        self.sprite = os.path.join("ressources", "img", "etudiant1.png")
+        self.vie_max = 100
+        self.vitesse = 1
+        self.recompense = 25
+
+        if tier == 2:
+            self.sprite = os.path.join("ressources", "img", "etudiant2.png")
+            self.vie_max = self.vie_max * 1.5
+            self.vitesse = self.vitesse * 1.2
+            self.recompense = self.recompense * 1.2
+        elif tier == 2:
+            os.path.join("ressources", "img", "etudiant3.png")
+            self.vie_max = self.vie_max * 1.8
+            self.vitesse = self.vitesse * 1.5
+            self.recompense = self.recompense * 1.5
+        self.vie = self.vie_max
 
 
     def avancer(self):
@@ -33,7 +50,7 @@ class Etudiant:
             dx = max(-1, min(1, dir_x))
             dy = max(-1, min(1, dir_y))
 
-            self.coords = [self.coords[0] + dx, self.coords[1] + dy]
+            self.coords = [self.coords[0] + dx*self.vitesse, self.coords[1] + dy*self.vitesse]
 
 
     def degats(self, vie):
@@ -42,4 +59,4 @@ class Etudiant:
         self.vie -= vie
         if self.vie < 0:
             self.partie.retirer_etudiant(self)
-            self.partie.argent += 25
+            self.partie.argent += self.recompense

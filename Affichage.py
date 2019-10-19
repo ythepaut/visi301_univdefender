@@ -1,4 +1,3 @@
-import os
 import pygame
 from enums.Menu import Menu
 
@@ -29,17 +28,17 @@ class Affichage:
 
             #Actualisation etudiants
             for etudiant in partie.etudiants:
-                img_etudiant = pygame.image.load(os.path.join("ressources", "img", "etudiant.png"))
+                img_etudiant = pygame.image.load(etudiant.sprite)
                 self.fenetre.blit(img_etudiant, (etudiant.coords[0] - 20, etudiant.coords[1] - 20))
 
                 #Affichage vie
                 pygame.draw.rect(self.fenetre, (231, 76, 60), (etudiant.coords[0] - 10, etudiant.coords[1] - 30, 20, 5))   #Rouge
-                pygame.draw.rect(self.fenetre, (46, 204, 113), (etudiant.coords[0] - 10, etudiant.coords[1] - 30, etudiant.vie / 5, 5))   #Vert
+                pygame.draw.rect(self.fenetre, (46, 204, 113), (etudiant.coords[0] - 10, etudiant.coords[1] - 30, (etudiant.vie / etudiant.vie_max)*20, 5))   #Vert
 
 
             #Actualisation enseignants
             for enseignant in partie.enseignants:
-                img_enseignant = pygame.image.load(os.path.join("ressources", "img", "enseignant.png"))
+                img_enseignant = pygame.image.load(enseignant.sprite)
                 self.fenetre.blit(img_enseignant, (enseignant.coords[0] - 20, enseignant.coords[1] - 20))
 
                 #Affichage portée
@@ -47,10 +46,10 @@ class Affichage:
 
 
             #Affichage varibles (argent, vies...)
-            texte_vies = self.police.render(str(partie.vie) + ' ❤', True, (0, 0, 0))
-            self.fenetre.blit(texte_vies, (1000, 10))
-            
-            texte_argent = self.police.render(str(partie.argent) + ' ✮', True, (0, 0, 0))
-            self.fenetre.blit(texte_argent, (1000, 30))
+            texte_vies = self.police.render("❤ " + str(partie.vie), True, (0, 0, 0))
+            self.fenetre.blit(texte_vies, (980, 10))
+
+            texte_argent = self.police.render("✮ " + str(int(partie.argent)), True, (0, 0, 0))
+            self.fenetre.blit(texte_argent, (980, 30))
 
             pygame.display.update()
