@@ -44,11 +44,6 @@ while execution:
         if evenement.type == pygame.QUIT or (evenement.type == pygame.KEYDOWN and evenement.key == pygame.K_ESCAPE):    #Quitter la partie ?
             execution = False
 
-        if evenement.type == pygame.KEYDOWN:        #TEMP : Ajout manuel etudiant
-            if evenement.key == pygame.K_e:
-                etudiant = Etudiant(partie.carte.chemin[0], partie)
-                partie.ajouter_etudiant(etudiant)
-
         if evenement.type == pygame.MOUSEBUTTONDOWN:#TEMP : Ajout manuel enseignant
             x, y = pygame.mouse.get_pos()
             enseignant = Enseignant([x, y], partie)

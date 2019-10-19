@@ -26,7 +26,11 @@ class Affichage:
             #Actualisation etudiants
             for etudiant in partie.etudiants:
                 img_etudiant = pygame.image.load(os.path.join("ressources", "img", "etudiant.png"))
-                self.fenetre.blit(img_etudiant, (etudiant.coords[0], etudiant.coords[1]))
+                self.fenetre.blit(img_etudiant, (etudiant.coords[0] - 20, etudiant.coords[1] - 20))
+
+                #Affichage vie
+                pygame.draw.rect(self.fenetre, (231, 76, 60), (etudiant.coords[0] - 10, etudiant.coords[1] - 30, 20, 5))   #Rouge
+                pygame.draw.rect(self.fenetre, (46, 204, 113), (etudiant.coords[0] - 10, etudiant.coords[1] - 30, etudiant.vie / 5, 5))   #Vert
 
             #Actualisation enseignants
             for enseignant in partie.enseignants:
@@ -34,6 +38,6 @@ class Affichage:
                 self.fenetre.blit(img_enseignant, (enseignant.coords[0] - 20, enseignant.coords[1] - 20))
 
                 #Affichage portée
-                pygame.draw.circle(self.fenetre, (255, 0, 0), enseignant.coords, enseignant.portee, 1)
+                pygame.draw.circle(self.fenetre, (127, 127, 255), enseignant.coords, enseignant.portee, 1)
 
             pygame.display.update()

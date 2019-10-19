@@ -1,4 +1,3 @@
-import threading
 import pygame
 
 from enums.Statut import Statut

@@ -12,16 +12,19 @@ class Enseignant:
         self.partie = partie
         self.portee = 100
         self.cadance = 0.5
+        self.dernier_tir = 0
 
 
     def tirer(self):
         """Procedure : Fait tirer la tour sur une cible"""
-        
-        if pygame.time.get_ticks() % (60 * self.cadance) == 0:
+
+        mtn = pygame.time.get_ticks()                           #
+        if mtn - self.dernier_tir >= self.cadance * 1000:       #Delai entre les tirs
+            self.dernier_tir = mtn                              #
 
             cible = cible_ideale(self, self.partie.etudiants)
             if cible != None:
-                print(cible)
+                cible.degats(35)
 
 
 

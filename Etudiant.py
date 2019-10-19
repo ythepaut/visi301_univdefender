@@ -8,6 +8,7 @@ class Etudiant:
         self.coords = coords
         self.point_passage = 0
         self.partie = partie
+        self.vie = 100
 
 
     def avancer(self):
@@ -33,3 +34,11 @@ class Etudiant:
             dy = max(-1, min(1, dir_y))
 
             self.coords = [self.coords[0] + dx, self.coords[1] + dy]
+
+
+    def degats(self, vie):
+        """Procedure qui fait dimunuer la vie de l'Etudiants (et c'est cruel)"""
+        print("ouch")
+        self.vie -= vie
+        if self.vie < 0:
+            self.partie.retirer_etudiant(self)
