@@ -28,6 +28,11 @@ affichage = Affichage(fenetre)
 carte = Carte([[1, 130], [775, 130], [775, 490], [1, 490]], os.path.join("ressources", "img", "carte1.png"))
 partie = Partie(carte)
 
+#Musique
+pygame.mixer.music.load(os.path.join("ressources", "audio", "musique.wav")) 
+pygame.mixer.music.play(-1, 0.0)
+pygame.mixer.music.set_volume(0.3)
+
 execution = True
 
 
@@ -55,8 +60,8 @@ def ecoute_evenements(evenements):
     return quitter
 
 
-
 while execution:
+
 
     clock.tick(ECRAN_IPS)  #Frequence d'affichage ecran
 
