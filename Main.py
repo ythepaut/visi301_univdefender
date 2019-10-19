@@ -11,6 +11,7 @@ from Affichage import Affichage
 from Carte import Carte
 from Enseignant import Enseignant
 from Partie import Partie
+from enums.Menu import Menu
 
 
 #Constantes d'affichage
@@ -29,13 +30,11 @@ carte = Carte([[1, 130], [775, 130], [775, 490], [1, 490]], os.path.join("ressou
 partie = Partie(carte)
 
 #Musique
-pygame.mixer.music.load(os.path.join("ressources", "audio", "musique.wav")) 
-pygame.mixer.music.play(-1, 0.0)
-pygame.mixer.music.set_volume(0.3)
+#pygame.mixer.music.load(os.path.join("ressources", "audio", "musique.wav"))
+#pygame.mixer.music.play(-1, 0.0)
+#pygame.mixer.music.set_volume(0.3)
 
 execution = True
-
-
 
 
 def ecoute_evenements(evenements):
@@ -46,26 +45,39 @@ def ecoute_evenements(evenements):
     quitter = False
 
     for evenement in evenements:
-        if evenement.type == pygame.QUIT or (evenement.type == pygame.KEYDOWN and evenement.key == pygame.K_ESCAPE):    #Quitter la partie ?
-            quitter = True
 
-        if evenement.type == pygame.MOUSEBUTTONDOWN:    #TEMP : Ajout manuel enseignant
-            if partie.argent >= 50:
-                x, y = pygame.mouse.get_pos()
-                enseignant = Enseignant([x, y], partie)
-                partie.ajouter_enseignant(enseignant)
-                partie.argent -= 50
-            else:
-                print("Vous n'avez pas assez d'argent pour placer cet enseignant !")
+        #Quitter le jeu
+        if evenement.type == pygame.QUIT or (evenement.type == pygame.KEYDOWN and evenement.key == pygame.K_ESCAPE):
+            quitter = True
+        #Pause
+        elif evenement.type == pygame.KEYDOWN and evenement.key == pygame.K_p:
+            if affichage.menu == Menu.PAUSE:
+                affichage.menu = Menu.AUCUN
+            elif affichage.menu == Menu.AUCUN:
+                affichage.menu = Menu.PAUSE
+
+        #Ajout d'un enseignant
+        if evenement.type == pygame.MOUSEBUTTONDOWN and evenement.button == 1:
+            if affichage.menu == Menu.AUCUN:
+                if partie.argent >= 50:
+                    x, y = pygame.mouse.get_pos()
+                    enseignant = Enseignant([x, y], partie)
+
+                    partie.ajouter_enseignant(enseignant)
+                    partie.argent -= 50
+                else:
+                    print("Vous n'avez pas assez d'argent pour placer cet enseignant !")
     return quitter
 
 
-while execution:
 
+#Boucle principale
+while execution:
 
     clock.tick(ECRAN_IPS)  #Frequence d'affichage ecran
 
-    partie.rafraichir()
+    if affichage.menu == Menu.AUCUN:
+        partie.rafraichir()
     affichage.rafraichir_ecran(partie)
 
     execution = execution and partie.execution and not ecoute_evenements(pygame.event.get())
