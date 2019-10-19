@@ -9,7 +9,6 @@ import pygame
 
 from Affichage import Affichage
 from Carte import Carte
-from Etudiant import Etudiant
 from Enseignant import Enseignant
 from Partie import Partie
 
@@ -34,17 +33,15 @@ while execution:
 
     clock.tick(ECRAN_IPS)  #Frequence d'affichage ecran
 
-
     partie.rafraichir()
     affichage.rafraichir_ecran(partie)
-
 
     # LISTENER - Ecoute des évenements
     for evenement in pygame.event.get():
         if evenement.type == pygame.QUIT or (evenement.type == pygame.KEYDOWN and evenement.key == pygame.K_ESCAPE):    #Quitter la partie ?
             execution = False
 
-        if evenement.type == pygame.MOUSEBUTTONDOWN:#TEMP : Ajout manuel enseignant
+        if evenement.type == pygame.MOUSEBUTTONDOWN:    #TEMP : Ajout manuel enseignant
             if partie.argent >= 50:
                 x, y = pygame.mouse.get_pos()
                 enseignant = Enseignant([x, y], partie)
