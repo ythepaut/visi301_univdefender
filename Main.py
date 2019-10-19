@@ -51,7 +51,7 @@ while execution:
 
         if evenement.type == pygame.MOUSEBUTTONDOWN:#TEMP : Ajout manuel enseignant
             x, y = pygame.mouse.get_pos()
-            enseignant = Enseignant([x - 20, y - 20], partie)
+            enseignant = Enseignant([x, y], partie)
             partie.ajouter_enseignant(enseignant)
 
     execution = execution and partie.execution 

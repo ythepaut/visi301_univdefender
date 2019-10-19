@@ -1,5 +1,5 @@
-import pygame
 import threading
+import pygame
 
 from enums.Statut import Statut
 from Etudiant import Etudiant
@@ -52,16 +52,24 @@ class Partie():
     def rafraichir(self):
         """Procedure : Fait avancer le jeu (Temps entre-vague, faire avancer les etudiant, faire tirer les profs...)"""
 
+        #Apparition des etudiants dans la vague
         if (len(self.file_attente_vague) > 0 and self.file_attente_vague[0][0] <= pygame.time.get_ticks()):
             self.ajouter_etudiant(self.file_attente_vague[0][1])
             self.file_attente_vague.pop(0)
 
+        #Faire tirer les enseignants
+        if len(self.enseignants) > 0:
+            
+            for enseignant in self.enseignants:
+                enseignant.tirer()
 
+        #Faire avancer les etudiants
         if len(self.etudiants) > 0:
 
             for etudiant in self.etudiants:
                 etudiant.avancer()
 
+        #Gestion transition vague car plus d'etudiants
         else:
 
             if self.statut == Statut.VAGUE: #Fin de vague

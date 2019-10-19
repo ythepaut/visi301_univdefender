@@ -1,3 +1,5 @@
+import pygame
+
 class Enseignant:
     """Classe Enseignant : Defenses."""
 
@@ -8,23 +10,43 @@ class Enseignant:
         :param partie: Partie à laquelle appartient l'enseignant"""
         self.coords = coords
         self.partie = partie
+        self.portee = 100
+        self.cadance = 0.5
 
 
     def tirer(self):
         """Procedure : Fait tirer la tour sur une cible"""
-        #cible = cible_ideale(self.partie.etudiants)
-        #print(cible)
+        
+        if pygame.time.get_ticks() % (60 * self.cadance) == 0:
+
+            cible = cible_ideale(self, self.partie.etudiants)
+            if cible != None:
+                print(cible)
 
 
 
-    def cible_ideale(self, cibles):
 
-        if len(cibles) != 0:
+def cible_ideale(enseignant, cibles):
+    """Fonction qui retourne l'etudiant a attaquer en fonction de sa distance avec la tour et la ligne d'arrivée
+    :param enseignant: Enseignant referant
+    :param cibles: Liste d'Etudiants
+    :return: Etudiant"""
 
-            resultat = cibles[0]
-            distance = ((resultat.coords[0] - self.coords[0])**2 + (resultat.coords[1] - self.coords[1])**2)**0.5
+    resultat = None
 
-            for cible in cibles:
+    if len(cibles) != 0:
+
+
+        i = 0
+        trouvee = False
+
+        while not trouvee and i < len(cibles):
+            cible = cibles[i]
+            distance = ((cible.coords[0] - enseignant.coords[0])**2 + (cible.coords[1] - enseignant.coords[1])**2)**0.5
+            if distance < enseignant.portee:
+                trouvee = True
                 resultat = cible
+            else:
+                i += 1
 
-        return resultat
+    return resultat
