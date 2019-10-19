@@ -20,7 +20,7 @@ class Etudiant:
             self.vie_max = self.vie_max * 1.5
             self.vitesse = self.vitesse * 1.2
             self.recompense = self.recompense * 1.2
-        elif tier == 2:
+        elif tier == 3:
             os.path.join("ressources", "img", "etudiant3.png")
             self.vie_max = self.vie_max * 1.8
             self.vitesse = self.vitesse * 1.5
