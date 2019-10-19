@@ -14,25 +14,22 @@ from Partie import Partie
 from enums.Menu import Menu
 
 
-#Constantes d'affichage
-ECRAN_X = 1080
-ECRAN_Y = 720
-ECRAN_IPS = 60
-
 #Initialisation pygame
 pygame.init()
-fenetre = pygame.display.set_mode((ECRAN_X, ECRAN_Y))
 clock = pygame.time.Clock()
 
+
 #Creation des instances
-affichage = Affichage(fenetre)
+affichage = Affichage()
 carte = Carte([[1, 130], [775, 130], [775, 490], [1, 490]], os.path.join("ressources", "img", "carte1.png"))
 partie = Partie(carte)
+
 
 #Musique
 #pygame.mixer.music.load(os.path.join("ressources", "audio", "musique.wav"))
 #pygame.mixer.music.play(-1, 0.0)
 #pygame.mixer.music.set_volume(0.3)
+
 
 execution = True
 
@@ -74,7 +71,7 @@ def ecoute_evenements(evenements):
 #Boucle principale
 while execution:
 
-    clock.tick(ECRAN_IPS)  #Frequence d'affichage ecran
+    clock.tick(affichage.get_ips())  #Frequence d'affichage ecran
 
     if affichage.menu == Menu.AUCUN:
         partie.rafraichir()

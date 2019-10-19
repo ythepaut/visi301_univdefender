@@ -1,19 +1,31 @@
 import pygame
 from enums.Menu import Menu
 
+#Constantes
+ECRAN_X = 1080
+ECRAN_Y = 720
+ECRAN_IPS = 60
+
 class Affichage:
     """Classe Affichage : Gestion de l'affichage de la fenetre."""
 
-    def __init__(self, fenetre):
+    def __init__(self):
         """Constructeur classe Affichage
         :param fenetre: Fenetre pygame que l'on va actualiser."""
         #Attributs
         self.menu = Menu.AUCUN
-        self.fenetre = fenetre
+        self.fenetre = pygame.display.set_mode((ECRAN_X, ECRAN_Y))
+
         pygame.font.init()
         self.police = pygame.font.SysFont('DejaVu Sans', 20)
 
         pygame.display.set_caption("Univ Defender")
+
+
+    def get_ips(self):
+        """Fonction qui retourne la frequence d'affichage."""
+        return ECRAN_IPS
+
 
 
     def rafraichir_ecran(self, partie):
