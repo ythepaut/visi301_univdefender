@@ -45,9 +45,13 @@ while execution:
             execution = False
 
         if evenement.type == pygame.MOUSEBUTTONDOWN:#TEMP : Ajout manuel enseignant
-            x, y = pygame.mouse.get_pos()
-            enseignant = Enseignant([x, y], partie)
-            partie.ajouter_enseignant(enseignant)
+            if partie.argent >= 50:
+                x, y = pygame.mouse.get_pos()
+                enseignant = Enseignant([x, y], partie)
+                partie.ajouter_enseignant(enseignant)
+                partie.argent -= 50
+            else:
+                print("Vous n'avez pas assez d'argent pour placer cet enseignant !")
 
     execution = execution and partie.execution 
 

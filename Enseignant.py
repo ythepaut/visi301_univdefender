@@ -11,7 +11,7 @@ class Enseignant:
         self.coords = coords
         self.partie = partie
         self.portee = 100
-        self.cadance = 0.5
+        self.cadance = 0.7
         self.dernier_tir = 0
 
 

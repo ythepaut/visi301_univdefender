@@ -38,7 +38,8 @@ class Etudiant:
 
     def degats(self, vie):
         """Procedure qui fait dimunuer la vie de l'Etudiants (et c'est cruel)"""
-        print("ouch")
+
         self.vie -= vie
         if self.vie < 0:
             self.partie.retirer_etudiant(self)
+            self.partie.argent += 25

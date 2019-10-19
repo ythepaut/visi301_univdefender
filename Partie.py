@@ -16,11 +16,12 @@ class Partie():
         self.etudiants = []
         self.enseignants = []
         self.statut = Statut.ENTRE_VAGUE
-        self.timer = 10
+        self.timer = 5
         self.vague = 0
         self.dernier_seconde = pygame.time.get_ticks()
         self.file_attente_vague = []
         self.vie = 10
+        self.argent = 100
 
 
     def ajouter_etudiant(self, etudiant):
@@ -73,7 +74,7 @@ class Partie():
 
             if self.statut == Statut.VAGUE: #Fin de vague
                 self.statut = Statut.ENTRE_VAGUE
-                self.timer = 10
+                self.timer = 5
                 print("Fin de la vague.")
 
             elif self.statut == Statut.ENTRE_VAGUE and self.timer > 0:
