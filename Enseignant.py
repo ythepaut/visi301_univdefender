@@ -12,7 +12,7 @@ class Enseignant:
         self.coords = coords
         self.partie = partie
         self.portee = 100
-        self.cadance = 0.7
+        self.cadance = 1
         self.dernier_tir = 0
         self.sprite = os.path.join("ressources", "img", "enseignant.png")
 
@@ -26,7 +26,7 @@ class Enseignant:
 
             cible = cible_ideale(self, self.partie.etudiants)
             if cible != None:
-                cible.degats(35)
+                cible.degats(40)
 
 
 

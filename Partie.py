@@ -76,11 +76,12 @@ class Partie():
                 etudiant.avancer()
 
         #Gestion transition vague car plus d'etudiants
-        else:
+        elif len(self.file_attente_vague) == 0:
 
             if self.statut == Statut.VAGUE: #Fin de vague
                 self.statut = Statut.ENTRE_VAGUE
                 self.timer = 5
+                self.argent += 30 + 10*(self.vague)**0.5
                 print("Fin de la vague.")
 
             elif self.statut == Statut.ENTRE_VAGUE and self.timer > 0:
@@ -121,5 +122,5 @@ def effectifs_vague(vague):
     :param vague: Entier : Numero de vague.
     :return: Tableau d'entiers : Nombre d'etudiants par type."""
 
-    resultat = [(vague * 5) % 15 + 5, (vague - 1) % 25, vague // 5]
+    resultat = [(vague * 3) % 15, (vague - 1) % 20, vague // 5]
     return resultat
