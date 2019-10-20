@@ -7,8 +7,10 @@ class Enseignant:
 
     def __init__(self, coords, partie):
         """Constructeur classe Enseignant
+
         :param coords: Coordonnées de l'enseignant [x,y].
-        :param partie: Partie à laquelle appartient l'enseignant"""
+        :param partie: Partie à laquelle appartient l'enseignant
+        """
         self.coords = coords
         self.partie = partie
         self.portee = 100
@@ -33,9 +35,12 @@ class Enseignant:
 
 def cible_ideale(enseignant, cibles):
     """Fonction qui retourne l'etudiant a attaquer en fonction de sa distance avec la tour et la ligne d'arrivée
+
     :param enseignant: Enseignant referant
     :param cibles: Liste d'Etudiants
-    :return: Etudiant"""
+
+    :return: Etudiant
+    """
 
     resultat = None
 

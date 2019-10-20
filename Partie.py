@@ -119,8 +119,11 @@ class Partie():
 
 def effectifs_vague(vague):
     """Fonction qui retourne le nombre d'etudiant a faire apparaitre dans la prochaine vague.
+
     :param vague: Entier : Numero de vague.
-    :return: Tableau d'entiers : Nombre d'etudiants par type."""
+
+    :return: Tableau d'entiers : Nombre d'etudiants par type.
+    """
 
     resultat = [(vague * 3) % 15, (vague - 1) % 20, vague // 5]
     return resultat

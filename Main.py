@@ -36,8 +36,11 @@ execution = True
 
 def ecoute_evenements(evenements):
     """Fonction qui traite les évenements et retourne si l'utilisateur veut quitter.
+
     :param eveenements: Liste des evenements pygame
-    :return: Booleen"""
+
+    :return: Booleen
+    """
 
     quitter = False
 
@@ -53,19 +56,25 @@ def ecoute_evenements(evenements):
             elif affichage.menu == Menu.AUCUN:
                 affichage.menu = Menu.PAUSE
 
-        #Ajout d'un enseignant
-        if evenement.type == pygame.MOUSEBUTTONDOWN and evenement.button == 1:
+        if evenement.type == pygame.MOUSEBUTTONDOWN and evenement.button == 1:  #Clic gauche ?
+            x, y = pygame.mouse.get_pos()
+
             if affichage.menu == Menu.AUCUN:
+                #Ajout d'un enseignant
                 if partie.argent >= 50:
-                    x, y = pygame.mouse.get_pos()
                     enseignant = Enseignant([x, y], partie)
 
                     partie.ajouter_enseignant(enseignant)
                     partie.argent -= 50
                 else:
                     print("Vous n'avez pas assez d'argent pour placer cet enseignant !")
-    return quitter
 
+            elif affichage.menu == Menu.PAUSE:
+                #Reprendre la partie
+                if x > (affichage.get_ecran_x() // 2 - 200) and x < (affichage.get_ecran_x() // 2 + 200) and y > 300 and y < 350:
+                    affichage.menu = Menu.AUCUN
+
+    return quitter
 
 
 #Boucle principale

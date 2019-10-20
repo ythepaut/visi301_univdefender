@@ -17,15 +17,26 @@ class Affichage:
         self.fenetre = pygame.display.set_mode((ECRAN_X, ECRAN_Y))
 
         pygame.font.init()
-        self.police = pygame.font.SysFont('DejaVu Sans', 20)
-
         pygame.display.set_caption("Univ Defender")
 
 
     def get_ips(self):
-        """Fonction qui retourne la frequence d'affichage."""
+        """Fonction qui retourne la frequence d'affichage.
+        :return: int
+        """
         return ECRAN_IPS
 
+    def get_ecran_x(self):
+        """Fonction qui retourne la largeur de l'ecran.
+        :return: int
+        """
+        return ECRAN_X
+
+    def get_ecran_y(self):
+        """Fonction qui retourne la hauteur de l'ecran.
+        :return: int
+        """
+        return ECRAN_Y
 
 
     def rafraichir_ecran(self, partie):
@@ -34,18 +45,37 @@ class Affichage:
         if self.menu == Menu.AUCUN:
             afficher_partie(self, partie)
         if self.menu == Menu.PAUSE:
-            afficher_menu(self)
+            afficher_menu(self, partie)
 
         pygame.display.update()
 
 
-def afficher_menu(self):
+def afficher_menu(self, partie):
     """Procedure : Affiche les differents menus"""
     menu = self.menu
 
+    afficher_partie(self, partie)
+    ombre = pygame.Surface((ECRAN_X, ECRAN_Y), pygame.SRCALPHA)
+    ombre.fill((0, 0, 0, 100))
+    self.fenetre.blit(ombre, (0, 0))
+
     if menu == Menu.PAUSE:
-        titre_menu = self.police.render("PAUSE", True, (0, 0, 0))
-        self.fenetre.blit(titre_menu, (500, 300))
+        #Cadre
+        ombre = pygame.Surface((500, 300), pygame.SRCALPHA)
+        ombre.fill((0, 0, 0, 128))
+        self.fenetre.blit(ombre, (ECRAN_X // 2 - 250, ECRAN_Y // 2 - 150))
+
+        #Titre
+        titre_menu = creer_police(taille=30, gras=True).render("PAUSE", True, (255, 255, 255))
+        self.fenetre.blit(titre_menu, (ECRAN_X  // 2 - titre_menu.get_width() // 2, 250 - titre_menu.get_height() // 2))
+
+        #Boutons
+        bouton_reprendre = pygame.Surface((400, 50), pygame.SRCALPHA)
+        bouton_reprendre.fill((46, 204, 113, 255))
+        self.fenetre.blit(bouton_reprendre, (ECRAN_X // 2 - 200, 325 - 25))
+        btntxt_reprendre = creer_police(taille=18, gras=True).render("REPRENDRE LA PARTIE", True, (255, 255, 255))
+        self.fenetre.blit(btntxt_reprendre, (ECRAN_X // 2 - 200 + 200 - btntxt_reprendre.get_width() // 2, 336 - btntxt_reprendre.get_height()))
+
 
 
 def afficher_partie(self, partie):
@@ -76,8 +106,27 @@ def afficher_partie(self, partie):
 
 
     #Affichage varibles (argent, vies...)
-    texte_vies = self.police.render("❤ " + str(partie.vie), True, (0, 0, 0))
+    texte_vies = creer_police().render("❤ " + str(partie.vie), True, (0, 0, 0))
     self.fenetre.blit(texte_vies, (980, 10))
 
-    texte_argent = self.police.render("✮ " + str(int(partie.argent)), True, (0, 0, 0))
+    texte_argent = creer_police().render("✮ " + str(int(partie.argent)), True, (0, 0, 0))
     self.fenetre.blit(texte_argent, (980, 30))
+
+
+
+
+
+def creer_police(police="DejaVu Sans", taille=20, gras=False, italique=False):
+    """Fonction qui retourne une police
+
+    :param police: String Nom de la police à utiliser
+    :param taille: int Taille de la police
+    :param gras: bool (opt) Police en gras
+    :param italique: bool (opt) Police en italique
+
+    :return: Police pygame"""
+
+    resultat = pygame.font.SysFont(police, taille)
+    resultat.set_bold(gras)
+    resultat.set_italic(italique)
+    return resultat

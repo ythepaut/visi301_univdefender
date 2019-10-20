@@ -5,8 +5,10 @@ class Etudiant:
 
     def __init__(self, coords, partie, tier):
         """Constructeur classe Etudiant
+
         :param coords: Coordonnées initiales de l'etudiant [x,y].
-        :param partie: Partie à laquelle appartient l'etudiant"""
+        :param partie: Partie à laquelle appartient l'etudiant
+        """
         self.coords = coords
         self.point_passage = 0
         self.partie = partie
