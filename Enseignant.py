@@ -1,3 +1,5 @@
+"""Module Enseignant (Tours)"""
+
 import os
 import pygame
 
@@ -27,7 +29,7 @@ class Enseignant:
             self.dernier_tir = mtn                              #
 
             cible = cible_ideale(self, self.partie.etudiants)
-            if cible != None:
+            if cible is not None:
                 cible.degats(40)
 
 

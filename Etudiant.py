@@ -1,3 +1,5 @@
+"""Module Etudiant"""
+
 import os
 
 class Etudiant:
@@ -49,10 +51,10 @@ class Etudiant:
                 self.point_passage += 1
 
 
-            dx = max(-1, min(1, dir_x))
-            dy = max(-1, min(1, dir_y))
+            d_x = max(-1, min(1, dir_x))
+            d_y = max(-1, min(1, dir_y))
 
-            self.coords = [self.coords[0] + dx*self.vitesse, self.coords[1] + dy*self.vitesse]
+            self.coords = [self.coords[0] + d_x*self.vitesse, self.coords[1] + d_y*self.vitesse]
 
 
     def degats(self, vie):

@@ -1,3 +1,5 @@
+"""Module Principal"""
+
 ####################
 ##  VISI301 : Projet de programmation
 ##  Univ Defender

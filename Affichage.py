@@ -1,3 +1,5 @@
+"""Module Affichage"""
+
 import pygame
 from enums.Menu import Menu
 

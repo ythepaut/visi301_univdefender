@@ -1,3 +1,5 @@
+"""Module Partie"""
+
 import pygame
 
 from enums.Statut import Statut
@@ -65,7 +67,7 @@ class Partie():
 
         #Faire tirer les enseignants
         if len(self.enseignants) > 0:
-            
+
             for enseignant in self.enseignants:
                 enseignant.tirer()
 

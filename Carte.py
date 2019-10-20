@@ -1,3 +1,5 @@
+"""Module Carte"""
+
 class Carte:
     """Classe Carte : Definit un niveau."""
 
