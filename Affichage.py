@@ -122,8 +122,10 @@ def afficher_partie(self, partie):
         img_enseignant = pygame.image.load(enseignant.sprite)
         self.fenetre.blit(img_enseignant, (enseignant.coords[0] - 20, enseignant.coords[1] - 20))
 
-        #Affichage portée
-        pygame.draw.circle(self.fenetre, (127, 127, 255), enseignant.coords, enseignant.portee, 1)
+        #Affichage portée si curseur sur la tour
+        curseur_x, curseur_y = pygame.mouse.get_pos()
+        if ((enseignant.coords[0]-curseur_x)**2 + (enseignant.coords[1]-curseur_y)**2)**0.5 < 20:
+            pygame.draw.circle(self.fenetre, (127, 127, 255), enseignant.coords, enseignant.portee, 1)
 
 
     #Affichage varibles (argent, vies...)

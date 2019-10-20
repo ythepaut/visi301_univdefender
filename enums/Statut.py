@@ -4,6 +4,6 @@ from enum import Enum
 
 class Statut(Enum):
     """Module : Statut"""
-    ENTRE_VAGUE = 1
-    VAGUE = 2
-    FIN_PARTIE = 3
+    ENTRE_VAGUE = 0
+    VAGUE = 1
+    FIN_PARTIE = 2
