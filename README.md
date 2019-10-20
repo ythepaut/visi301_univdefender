@@ -4,7 +4,7 @@ Les élèves de l'université ont décidé de se rebeller suite à leurs mauvais
 
 # Comment jouer ?
 
-- Python et Pygame doivent être installés sur votre machine.
+- Python et sa librairie Pygame doivent être installés sur votre machine.
 - Lancez le programme avec la commande <code>python3 Main.py</code> ou en executant directement <code>Main.py</code> depuis l'explorateur de fichier.
 - Appuyez sur <code>ESC</code> pour mettre en pause ou quitter le jeu. Toutes les autres actions se font à la souris.
 
