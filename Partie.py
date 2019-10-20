@@ -83,7 +83,7 @@ class Partie():
             if self.statut == Statut.VAGUE: #Fin de vague
                 self.statut = Statut.ENTRE_VAGUE
                 self.timer = 5
-                self.argent += 30 + 10*(self.vague)**0.5
+                self.argent += 25 + 10*(self.vague)**0.5
                 print("Fin de la vague.")
 
             elif self.statut == Statut.ENTRE_VAGUE and self.timer > 0:

@@ -17,7 +17,7 @@ class Etudiant:
         self.sprite = os.path.join("ressources", "img", "etudiant1.png")
         self.vie_max = 100 * (1+ partie.vague/20)
         self.vitesse = 1
-        self.recompense = 5 * (1+ partie.vague/20)
+        self.recompense = 5 * (1+ partie.vague/50)
 
         if tier == 2:
             self.sprite = os.path.join("ressources", "img", "etudiant2.png")

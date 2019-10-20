@@ -94,8 +94,8 @@ def afficher_partie(self, partie):
         self.fenetre.blit(img_etudiant, (etudiant.coords[0] - 20, etudiant.coords[1] - 20))
 
         #Affichage vie
-        pygame.draw.rect(self.fenetre, (231, 76, 60), (etudiant.coords[0] - 10, etudiant.coords[1] - 30, 20, 5))   #Rouge
-        pygame.draw.rect(self.fenetre, (46, 204, 113), (etudiant.coords[0] - 10, etudiant.coords[1] - 30, (etudiant.vie / etudiant.vie_max)*20, 5))   #Vert
+        pygame.draw.rect(self.fenetre, (231, 76, 60), (etudiant.coords[0] - 10, etudiant.coords[1] - 30, 20, 3))   #Rouge
+        pygame.draw.rect(self.fenetre, (46, 204, 113), (etudiant.coords[0] - 10, etudiant.coords[1] - 30, (etudiant.vie / etudiant.vie_max)*20, 3))   #Vert
 
 
     #Actualisation enseignants
