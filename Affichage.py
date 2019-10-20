@@ -46,7 +46,7 @@ class Affichage:
 
         if self.menu == Menu.AUCUN:
             afficher_partie(self, partie)
-        if self.menu == Menu.PAUSE:
+        else:
             afficher_menu(self, partie)
 
         pygame.display.update()
@@ -77,6 +77,24 @@ def afficher_menu(self, partie):
         self.fenetre.blit(bouton_reprendre, (ECRAN_X // 2 - 200, 325 - 25))
         btntxt_reprendre = creer_police(taille=18, gras=True).render("REPRENDRE LA PARTIE", True, (255, 255, 255))
         self.fenetre.blit(btntxt_reprendre, (ECRAN_X // 2 - 200 + 200 - btntxt_reprendre.get_width() // 2, 336 - btntxt_reprendre.get_height()))
+
+    elif menu == Menu.PERDU:
+        #Cadre
+        ombre = pygame.Surface((500, 300), pygame.SRCALPHA)
+        ombre.fill((0, 0, 0, 128))
+        self.fenetre.blit(ombre, (ECRAN_X // 2 - 250, ECRAN_Y // 2 - 150))
+
+        #Titre
+        titre_menu = creer_police(taille=30, gras=True).render("VOUS AVEZ PERDU :(", True, (255, 255, 255))
+        self.fenetre.blit(titre_menu, (ECRAN_X  // 2 - titre_menu.get_width() // 2, 250 - titre_menu.get_height() // 2))
+
+        #Boutons
+        bouton_reprendre = pygame.Surface((400, 50), pygame.SRCALPHA)
+        bouton_reprendre.fill((46, 204, 113, 255))
+        self.fenetre.blit(bouton_reprendre, (ECRAN_X // 2 - 200, 325 - 25))
+        btntxt_reprendre = creer_police(taille=18, gras=True).render("REFAIRE UNE PARTIE", True, (255, 255, 255))
+        self.fenetre.blit(btntxt_reprendre, (ECRAN_X // 2 - 200 + 200 - btntxt_reprendre.get_width() // 2, 336 - btntxt_reprendre.get_height()))
+
 
 
 

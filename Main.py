@@ -24,7 +24,7 @@ clock = pygame.time.Clock()
 #Creation des instances
 affichage = Affichage()
 carte = Carte([[80, 200], [840, 200], [840, 480], [70, 480]], os.path.join("ressources", "img", "carte1.png"))
-partie = Partie(carte)
+partie = Partie(carte, affichage)
 
 
 #Musique
@@ -44,13 +44,13 @@ def ecoute_evenements(evenements):
     :return: Booleen
     """
 
-    quitter = False
+    continuer = execution
 
     for evenement in evenements:
 
         #Quitter le jeu
         if evenement.type == pygame.QUIT or (evenement.type == pygame.KEYDOWN and evenement.key == pygame.K_ESCAPE):
-            quitter = True
+            continuer = False
         #Pause
         elif evenement.type == pygame.KEYDOWN and evenement.key == pygame.K_p:
             if affichage.menu == Menu.PAUSE:
@@ -76,7 +76,15 @@ def ecoute_evenements(evenements):
                 if x > (affichage.get_ecran_x() // 2 - 200) and x < (affichage.get_ecran_x() // 2 + 200) and y > 300 and y < 350:
                     affichage.menu = Menu.AUCUN
 
-    return quitter
+            elif affichage.menu == Menu.PERDU:
+                #Recommencer la partie
+                if x > (affichage.get_ecran_x() // 2 - 200) and x < (affichage.get_ecran_x() // 2 + 200) and y > 300 and y < 350:
+                    affichage.__init__()
+                    carte.__init__([[80, 200], [840, 200], [840, 480], [70, 480]], os.path.join("ressources", "img", "carte1.png"))
+                    partie.__init__(carte, affichage)
+                    affichage.menu = Menu.AUCUN
+
+    return continuer
 
 
 #Boucle principale
@@ -88,6 +96,6 @@ while execution:
         partie.rafraichir()
     affichage.rafraichir_ecran(partie)
 
-    execution = execution and partie.execution and not ecoute_evenements(pygame.event.get())
+    execution = ecoute_evenements(pygame.event.get())
 
 pygame.quit()

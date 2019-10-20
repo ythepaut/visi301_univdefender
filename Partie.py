@@ -3,18 +3,20 @@
 import pygame
 
 from enums.Statut import Statut
+from enums.Menu import Menu
 from Etudiant import Etudiant
 
 class Partie():
     """Classe Partie : Gestion de la partie."""
 
 
-    def __init__(self, carte):
+    def __init__(self, carte, affichage):
         """Constructeur classe Partie
-        :param carte: Carte sur laquelle la partie se joue."""
+        :param carte: Carte sur laquelle la partie se joue.
+        :param affichage: Classe qui gere l'affichage de la partie actuelle."""
         #Attributs
-        self.execution = True
         self.carte = carte
+        self.affichage = affichage
         self.etudiants = []
         self.enseignants = []
         self.statut = Statut.ENTRE_VAGUE
@@ -112,7 +114,7 @@ class Partie():
     def perdre_vie(self):
         """Procedure qui fait perdre une vie au joueur et le notifie."""
         if self.vie == 0:
-            self.execution = False
+            self.affichage.menu = Menu.PERDU
             print("Fin de la partie ! Vous n'avez plus de vies")
         else:
             self.vie -= 1
