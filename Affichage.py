@@ -90,7 +90,8 @@ def afficher_partie(self, partie):
 
     #Actualisation etudiants
     for etudiant in partie.etudiants:
-        img_etudiant = pygame.image.load(etudiant.sprite)
+        no_sprite = (pygame.time.get_ticks() // 300) % len(etudiant.sprite)
+        img_etudiant = pygame.image.load(etudiant.sprite[no_sprite])
         self.fenetre.blit(img_etudiant, (etudiant.coords[0] - 20, etudiant.coords[1] - 20))
 
         #Affichage vie

@@ -14,18 +14,18 @@ class Etudiant:
         self.coords = coords
         self.point_passage = 0
         self.partie = partie
-        self.sprite = os.path.join("ressources", "img", "etudiant1.png")
+        self.sprite = [os.path.join("ressources", "img", "etudiant1_1.png"), os.path.join("ressources", "img", "etudiant1_2.png")]
         self.vie_max = 100 * (1+ partie.vague/20)
         self.vitesse = 1
         self.recompense = 5 * (1+ partie.vague/50)
 
         if tier == 2:
-            self.sprite = os.path.join("ressources", "img", "etudiant2.png")
+            self.sprite = [os.path.join("ressources", "img", "etudiant2_1.png")]
             self.vie_max = self.vie_max * 1.6 * (1+ partie.vague/10)
             self.vitesse = self.vitesse * 1.2
             self.recompense = self.recompense * 1.2 * (1+ partie.vague/10)
         elif tier == 3:
-            os.path.join("ressources", "img", "etudiant3.png")
+            self.sprite = [os.path.join("ressources", "img", "etudiant3_1.png")]
             self.vie_max = self.vie_max * 2 * (1+ partie.vague/10)
             self.vitesse = self.vitesse * 1.5
             self.recompense = self.recompense * 1.5 * (1+ partie.vague/10)
