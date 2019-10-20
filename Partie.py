@@ -99,7 +99,7 @@ class Partie():
             elif self.statut == Statut.ENTRE_VAGUE and self.timer <= 0:
                 self.statut = Statut.VAGUE
                 self.vague += 1
-                print("Nouvelle vague !")
+                print("Nouvelle vague ! (" + str(self.vague) + ")")
 
                 effectifs = effectifs_vague(self.vague)
 
