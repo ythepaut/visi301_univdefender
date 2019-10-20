@@ -21,7 +21,7 @@ clock = pygame.time.Clock()
 
 #Creation des instances
 affichage = Affichage()
-carte = Carte([[1, 130], [775, 130], [775, 490], [1, 490]], os.path.join("ressources", "img", "carte1.png"))
+carte = Carte([[80, 200], [840, 200], [840, 480], [70, 480]], os.path.join("ressources", "img", "carte1.png"))
 partie = Partie(carte)
 
 

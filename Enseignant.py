@@ -13,7 +13,7 @@ class Enseignant:
         """
         self.coords = coords
         self.partie = partie
-        self.portee = 100
+        self.portee = 120
         self.cadance = 1
         self.dernier_tir = 0
         self.sprite = os.path.join("ressources", "img", "enseignant.png")

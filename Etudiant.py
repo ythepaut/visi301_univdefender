@@ -19,12 +19,12 @@ class Etudiant:
 
         if tier == 2:
             self.sprite = os.path.join("ressources", "img", "etudiant2.png")
-            self.vie_max = self.vie_max * 1.5 * (1+ partie.vague/10)
+            self.vie_max = self.vie_max * 1.6 * (1+ partie.vague/10)
             self.vitesse = self.vitesse * 1.2
             self.recompense = self.recompense * 1.2 * (1+ partie.vague/10)
         elif tier == 3:
             os.path.join("ressources", "img", "etudiant3.png")
-            self.vie_max = self.vie_max * 1.8 * (1+ partie.vague/10)
+            self.vie_max = self.vie_max * 2 * (1+ partie.vague/10)
             self.vitesse = self.vitesse * 1.5
             self.recompense = self.recompense * 1.5 * (1+ partie.vague/10)
         self.vie = self.vie_max
