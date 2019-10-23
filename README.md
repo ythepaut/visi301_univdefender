@@ -12,7 +12,7 @@ Bon jeu !
 
 # A propos
 
-Ce projet est en cours de réalisation par Yohann THEPAUT et Ewan RAKOTOANOSY et Romain THEODET dans le cadre du module VISI301 : Recherche et projet de programmation à l'Université Savoie Mont-Blanc.
+Ce projet est en cours de réalisation par Yohann THEPAUT et Ewan RAKOTOANOSY dans le cadre du module VISI301 : Recherche et projet de programmation à l'Université Savoie Mont-Blanc.
 
 Diagramme UML : https://drive.google.com/file/d/1YjEt3If_lxwQ82Y6upgrwExOGSzGlVLn/view
 
