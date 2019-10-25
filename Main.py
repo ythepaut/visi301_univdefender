@@ -23,7 +23,7 @@ clock = pygame.time.Clock()
 
 #Creation des instances
 affichage = Affichage()
-carte = Carte([[80, 200], [840, 200], [840, 480], [70, 480]], os.path.join("ressources", "img", "carte1.png"))
+carte = Carte([[80, 200], [840, 200], [840, 480], [70, 480]], [[130, 130], [190, 130], [250, 130], [310, 130], [370, 130], [430, 130], [490, 130], [550, 130], [610, 130], [670, 130], [730, 130], [790, 130], [850, 130], [910, 130]], os.path.join("ressources", "img", "carte1.png"))
 partie = Partie(carte, affichage)
 
 
@@ -64,10 +64,18 @@ def ecoute_evenements(evenements):
             if affichage.menu == Menu.AUCUN:
                 #Ajout d'un enseignant
                 if partie.argent >= 50:
-                    enseignant = Enseignant([x, y], partie)
-
-                    partie.ajouter_enseignant(enseignant)
-                    partie.argent -= 50
+                    emplacement = carte.emplacement_le_plus_proche((x, y))
+                    if emplacement is not None:
+                        if not carte.est_emplacement_utilise(emplacement):
+                            enseignant = Enseignant(emplacement, partie)
+                            carte.utiliser_emplacement(emplacement)
+                            partie.ajouter_enseignant(enseignant)
+                            partie.argent -= 50
+                            print("Enseignant ajouté.")
+                        else:
+                            print("Emplacement deja utilisé")
+                    else:
+                        print("Veuillez cliquer sur un emplacement valide")
                 else:
                     print("Vous n'avez pas assez d'argent pour placer cet enseignant !")
 
@@ -80,7 +88,7 @@ def ecoute_evenements(evenements):
                 #Recommencer la partie
                 if x > (affichage.get_ecran_x() // 2 - 200) and x < (affichage.get_ecran_x() // 2 + 200) and y > 300 and y < 350:
                     affichage.__init__()
-                    carte.__init__([[80, 200], [840, 200], [840, 480], [70, 480]], os.path.join("ressources", "img", "carte1.png"))
+                    carte.__init__([[80, 200], [840, 200], [840, 480], [70, 480]], [[130, 130], [190, 130], [250, 130], [310, 130], [370, 130], [430, 130], [490, 130], [550, 130], [610, 130], [670, 130], [730, 130], [790, 130], [850, 130], [910, 130]], os.path.join("ressources", "img", "carte1.png"))
                     partie.__init__(carte, affichage)
                     affichage.menu = Menu.AUCUN
 
