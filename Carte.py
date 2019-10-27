@@ -60,7 +60,6 @@ class Carte:
 
         for emplacement in self.emplacements:
             distance_courante = distance(emplacement, coords)
-            print(distance_courante)
             if distance_courante < meilleur_distance:
                 meilleur_distance = distance_courante
                 resultat = emplacement
