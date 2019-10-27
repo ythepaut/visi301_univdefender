@@ -106,5 +106,4 @@ while execution:
 
     execution = ecoute_evenements(pygame.event.get())
 
-
 pygame.quit()
