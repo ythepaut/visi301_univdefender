@@ -23,7 +23,7 @@ clock = pygame.time.Clock()
 
 #Creation des instances
 affichage = Affichage()
-carte = Carte([[80, 200], [840, 200], [840, 480], [70, 480]], [[130, 130], [190, 130], [250, 130], [310, 130], [370, 130], [430, 130], [490, 130], [550, 130], [610, 130], [670, 130], [730, 130], [790, 130], [850, 130], [910, 130]], os.path.join("ressources", "img", "carte1.png"))
+carte = Carte([[80, 200], [840, 200], [840, 480], [70, 480]], [[130, 130], [190, 130], [250, 130], [310, 130], [370, 130], [430, 130], [490, 130], [550, 130], [610, 130], [670, 130], [730, 130], [790, 130], [850, 130], [910, 130], [130, 270], [190, 270], [250, 270], [310, 270], [370, 270], [430, 270], [490, 270], [550, 270], [610, 270], [770, 270]], os.path.join("ressources", "img", "carte1.png"))
 partie = Partie(carte, affichage)
 
 
@@ -88,7 +88,7 @@ def ecoute_evenements(evenements):
                 #Recommencer la partie
                 if x > (affichage.get_ecran_x() // 2 - 200) and x < (affichage.get_ecran_x() // 2 + 200) and y > 300 and y < 350:
                     affichage.__init__()
-                    carte.__init__([[80, 200], [840, 200], [840, 480], [70, 480]], [[130, 130], [190, 130], [250, 130], [310, 130], [370, 130], [430, 130], [490, 130], [550, 130], [610, 130], [670, 130], [730, 130], [790, 130], [850, 130], [910, 130]], os.path.join("ressources", "img", "carte1.png"))
+                    carte.__init__(carte.chemin, carte.emplacements, carte.arriere_plan)
                     partie.__init__(carte, affichage)
                     affichage.menu = Menu.AUCUN
 
