@@ -12,11 +12,13 @@ class Affichage:
     """Classe Affichage : Gestion de l'affichage de la fenetre."""
 
     def __init__(self):
-        """Constructeur classe Affichage
-        :param fenetre: Fenetre pygame que l'on va actualiser."""
+        """Constructeur classe Affichage"""
+        
         #Attributs
         self.menu = Menu.AUCUN
         self.fenetre = pygame.display.set_mode((ECRAN_X, ECRAN_Y))
+
+        self.msg = ["", 0]  #Message titre à afficher en haut de l'ecran [String Titre, int nb_tick_expiration]
 
         pygame.font.init()
         pygame.display.set_caption("Univ Defender")
@@ -42,7 +44,9 @@ class Affichage:
 
 
     def rafraichir_ecran(self, partie):
-        """Procedure : Rafraichit l'ecran (menus / jeu ...)"""
+        """Procedure : Rafraichit l'ecran (menus / jeu ...)
+        :param partie: Partie par rapport à laquelle on fait l'affichage.
+        """
 
         if self.menu == Menu.AUCUN:
             afficher_partie(self, partie)
@@ -51,6 +55,12 @@ class Affichage:
 
         pygame.display.update()
 
+    def afficher_message(self, message, temps):
+        """Procudure : Affiche une message en haut de l'ecran.
+        :param message: Chaîne de caractères à afficher.
+        :param temps: Entier representant la durée d'affichage du message.
+        """
+        self.msg = [message, pygame.time.get_ticks() + temps*ECRAN_IPS*17]
 
 def afficher_menu(self, partie):
     """Procedure : Affiche les differents menus"""
@@ -135,6 +145,14 @@ def afficher_partie(self, partie):
     texte_argent = creer_police().render("✮ " + str(int(partie.argent)), True, (0, 0, 0))
     self.fenetre.blit(texte_argent, (980, 30))
 
+
+    #Affichage message titre
+    if self.msg[0] != "":
+        if self.msg[1] < pygame.time.get_ticks():
+            self.msg[0] = ""
+        else:
+            texte_msg = creer_police().render(self.msg[0], True, (0, 0, 0))
+            self.fenetre.blit(texte_msg, (ECRAN_X  // 2 - texte_msg.get_width() // 2, 10))
 
 
 

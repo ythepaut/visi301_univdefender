@@ -86,7 +86,7 @@ class Partie():
                 self.statut = Statut.ENTRE_VAGUE
                 self.timer = 5
                 self.argent += 25 + 10*(self.vague)**0.5
-                print("Fin de la vague.")
+                self.affichage.afficher_message("Fin de la vague.", 3)
 
             elif self.statut == Statut.ENTRE_VAGUE and self.timer > 0:
 
@@ -94,14 +94,14 @@ class Partie():
                 if mtn - self.dernier_seconde >= 1000:      #Delai entre vague
                     self.dernier_seconde = mtn              #
 
-                    print("Nouvelle vague dans ", self.timer)
+                    self.affichage.afficher_message("Nouvelle vague dans " + str(self.timer), 1)
                     self.timer -= 1
 
 
             elif self.statut == Statut.ENTRE_VAGUE and self.timer <= 0:
                 self.statut = Statut.VAGUE
                 self.vague += 1
-                print("Nouvelle vague ! (" + str(self.vague) + ")")
+                self.affichage.afficher_message("Nouvelle vague ! (" + str(self.vague) + ")", 3)
 
                 effectifs = effectifs_vague(self.vague)
 
@@ -115,10 +115,10 @@ class Partie():
         """Procedure qui fait perdre une vie au joueur et le notifie."""
         if self.vie == 0:
             self.affichage.menu = Menu.PERDU
-            print("Fin de la partie ! Vous n'avez plus de vies")
+            self.affichage.afficher_message("Fin de la partie ! Vous n'avez plus de vies", 10)
         else:
             self.vie -= 1
-            print("Vous avez perdu une vie ! Il vous en reste ", self.vie)
+            self.affichage.afficher_message("Vous avez perdu une vie ! Il vous en reste " + str(self.vie), 3)
 
 
 def effectifs_vague(vague):

@@ -71,13 +71,13 @@ def ecoute_evenements(evenements):
                             carte.utiliser_emplacement(emplacement)
                             partie.ajouter_enseignant(enseignant)
                             partie.argent -= 50
-                            print("Enseignant ajouté.")
+                            affichage.afficher_message("Enseignant ajouté.", 2)
                         else:
-                            print("Emplacement deja utilisé")
+                            affichage.afficher_message("Emplacement deja utilisé", 2)
                     else:
-                        print("Veuillez cliquer sur un emplacement valide")
+                        affichage.afficher_message("Veuillez cliquer sur un emplacement valide", 2)
                 else:
-                    print("Vous n'avez pas assez d'argent pour placer cet enseignant !")
+                    affichage.afficher_message("Vous n'avez pas assez d'argent pour placer cet enseignant !", 2)
 
             elif affichage.menu == Menu.PAUSE:
                 #Reprendre la partie
