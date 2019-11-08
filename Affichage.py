@@ -146,6 +146,11 @@ def afficher_partie(self, partie):
     self.fenetre.blit(texte_argent, (980, 30))
 
 
+    #Affichage Matiere courante
+    texte_matiere = creer_police().render("Matiere : " + str(partie.matiere_courante), True, (0, 0, 0))
+    self.fenetre.blit(texte_matiere, (800, 690))
+
+
     #Affichage message titre
     if self.msg[0] != "":
         if self.msg[1] < pygame.time.get_ticks():

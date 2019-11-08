@@ -47,6 +47,16 @@ class Carte:
             if self.emplacements[i] == coords:
                 self.dico_emplacements[i] = True
 
+
+    def liberer_emplacement(self, coords):
+        """Procedure qui modifie le statut de l'emplacement.
+        :param coords: Coordonnées de l'emplacement à utiliser.
+        """
+
+        for i in range(len(self.emplacements)):
+            if self.emplacements[i] == coords:
+                self.dico_emplacements[i] = False
+
     def emplacement_le_plus_proche(self, coords):
         """Fonction qui retourne les coordonnées de l'emplacement le plus proche à moins de 30px.
 

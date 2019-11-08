@@ -4,6 +4,7 @@ import pygame
 
 from enums.Statut import Statut
 from enums.Menu import Menu
+from enums.Matiere import Matiere
 from Etudiant import Etudiant
 
 class Partie():
@@ -27,6 +28,7 @@ class Partie():
         self.dernier_apparition = 0
         self.vie = 10
         self.argent = 100
+        self.matiere_courante = Matiere.HISTOIRE
 
 
     def ajouter_etudiant(self, etudiant):
@@ -51,6 +53,16 @@ class Partie():
         :param enseignant: Enseignant à retirer."""
         self.enseignants.remove(enseignant)
         del enseignant
+
+    def get_enseignant(self, coords):
+        """Fonction qui retourne un enseignant aux coordonnées.
+        :param coords: Coordonnées de l'enseignant recherché.
+        :return: Enseignant."""
+        resultat = None
+        for enseignant in self.enseignants:
+            if enseignant.coords == coords:
+                resultat = enseignant
+        return resultat
 
 
 

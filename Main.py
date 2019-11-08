@@ -11,9 +11,10 @@ import pygame
 
 from Affichage import Affichage
 from Carte import Carte
-from Enseignant import Enseignant
+from Enseignant import *
 from Partie import Partie
 from enums.Menu import Menu
+from enums.Matiere import Matiere
 
 
 #Initialisation pygame
@@ -25,6 +26,8 @@ clock = pygame.time.Clock()
 affichage = Affichage()
 carte = Carte([[80, 200], [840, 200], [840, 480], [70, 480]], [[130, 130], [190, 130], [250, 130], [310, 130], [370, 130], [430, 130], [490, 130], [550, 130], [610, 130], [670, 130], [730, 130], [790, 130], [850, 130], [910, 130], [130, 270], [190, 270], [250, 270], [310, 270], [370, 270], [430, 270], [490, 270], [550, 270], [610, 270], [770, 270], [910, 190], [910, 250], [910, 310], [910, 370], [910, 430], [910, 490], [910, 550], [850, 550], [790, 550], [730, 550], [670, 550], [610, 550], [550, 550], [490, 550], [430, 550], [370, 550], [310, 550], [250, 550], [190, 550], [130, 550], [130, 410], [190, 410], [250, 410], [310, 410], [370, 410], [430, 410], [490, 410], [550, 410], [610, 410], [770, 410]], os.path.join("ressources", "img", "carte1.png"))
 partie = Partie(carte, affichage)
+
+enseignantutils = EnseignantUtils()
 
 
 #Musique
@@ -63,14 +66,14 @@ def ecoute_evenements(evenements):
 
             if affichage.menu == Menu.AUCUN:
                 #Ajout d'un enseignant
-                if partie.argent >= 50:
+                if partie.argent >= enseignantutils.get_prix(partie.matiere_courante):
                     emplacement = carte.emplacement_le_plus_proche((x, y))
                     if emplacement is not None:
                         if not carte.est_emplacement_utilise(emplacement):
-                            enseignant = Enseignant(emplacement, partie)
+                            enseignant = Enseignant(emplacement, partie, partie.matiere_courante)
                             carte.utiliser_emplacement(emplacement)
                             partie.ajouter_enseignant(enseignant)
-                            partie.argent -= 50
+                            partie.argent -= enseignantutils.get_prix(partie.matiere_courante)
                             affichage.afficher_message("Enseignant ajouté.", 2)
                         else:
                             affichage.afficher_message("Emplacement deja utilisé", 2)
@@ -91,6 +94,25 @@ def ecoute_evenements(evenements):
                     carte.__init__(carte.chemin, carte.emplacements, carte.arriere_plan)
                     partie.__init__(carte, affichage)
                     affichage.menu = Menu.AUCUN
+
+        elif evenement.type == pygame.MOUSEBUTTONDOWN and evenement.button == 3:    #Clic droit ?
+            x, y = pygame.mouse.get_pos()
+            if affichage.menu == Menu.AUCUN:
+                #Retirer un enseignant
+                emplacement = carte.emplacement_le_plus_proche((x, y))
+                if (carte.est_emplacement_utilise(emplacement)):
+                    enseignant = partie.get_enseignant(emplacement)
+                    if (enseignant is not None):
+                        partie.retirer_enseignant(enseignant)
+                        partie.argent += 25
+                        affichage.afficher_message("Vous avez licencié cet enseignant.", 2)
+                        carte.liberer_emplacement(emplacement)
+
+        elif evenement.type == pygame.MOUSEBUTTONDOWN and (evenement.button == 5 or evenement.button == 4): #Changement de matiere enseignant :
+            if evenement.button == 5:
+                partie.matiere_courante = Matiere((partie.matiere_courante.value + 1) % len(Matiere))
+            else:
+                partie.matiere_courante = Matiere((partie.matiere_courante.value - 1) % len(Matiere))
 
     return continuer
 

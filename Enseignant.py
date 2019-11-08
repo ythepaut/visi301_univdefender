@@ -3,22 +3,43 @@
 import os
 import pygame
 
+from enums.Matiere import Matiere
+
 class Enseignant:
     """Classe Enseignant : Defenses."""
 
 
-    def __init__(self, coords, partie):
+    def __init__(self, coords, partie, matiere):
         """Constructeur classe Enseignant
 
         :param coords: Coordonnées de l'enseignant [x,y].
         :param partie: Partie à laquelle appartient l'enseignant
+        :param matiere: Matiere de l'enseignant
         """
         self.coords = coords
         self.partie = partie
-        self.portee = 120
-        self.cadance = 1
         self.dernier_tir = 0
         self.sprite = os.path.join("ressources", "img", "enseignant.png")
+
+        enseignantutils = EnseignantUtils()
+        if matiere == Matiere.HISTOIRE:
+            self.prix = enseignantutils.get_prix(matiere)
+            self.portee = 120
+            self.cadance = 1
+            self.degats = 40
+            self.sprite = os.path.join("ressources", "img", "enseignant.png")
+        elif matiere == Matiere.MATHS:
+            self.prix = enseignantutils.get_prix(matiere)
+            self.portee = 180
+            self.cadance = 0.9
+            self.degats = 25
+            self.sprite = os.path.join("ressources", "img", "enseignant_math.png")
+        elif matiere == Matiere.INFO:
+            self.prix = enseignantutils.get_prix(matiere)
+            self.portee = 200
+            self.cadance = 1.3
+            self.degats = 35
+            self.sprite = os.path.join("ressources", "img", "enseignant.png")
 
 
     def tirer(self):
@@ -29,9 +50,24 @@ class Enseignant:
             mtn = pygame.time.get_ticks()                           #
             if mtn - self.dernier_tir >= self.cadance * 1000:       #Delai entre les tirs
                 self.dernier_tir = mtn                              #
-                cible.degats(40)
+                cible.degats(self.degats)
 
 
+class EnseignantUtils:
+    """Classe EnseignantUtils : Fonctions utiles."""
+
+    def get_prix(self, matiere):
+        """Fonction qui retourne le prix d'un enseignant en fonction de sa matiere.
+        :param enums.Matiere: Matiere
+        :return: Entier : Prix."""
+        resultat = -1
+        if matiere == Matiere.HISTOIRE:
+            resultat = 50
+        elif matiere == Matiere.MATHS:
+            resultat = 100
+        elif matiere == Matiere.INFO:
+            resultat = 75
+        return resultat
 
 
 def cible_ideale(enseignant, cibles):
