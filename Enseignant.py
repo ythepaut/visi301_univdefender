@@ -62,7 +62,7 @@ class Enseignant:
         self.prix *= int(self.tier * 0.5)
         self.portee *= int(self.tier * 0.5)
         self.cadance -= int(self.tier * 0.1)
-        self.degats += int(self.tier * 3)
+        self.degats += int(self.tier * 5)
 
 
 class EnseignantUtils:

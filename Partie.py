@@ -29,7 +29,7 @@ class Partie():
         self.file_attente_vague = []
         self.dernier_apparition = 0
         self.vie = 10
-        self.argent = 10000
+        self.argent = 100
         self.matiere_courante = Matiere.HISTOIRE
 
 
