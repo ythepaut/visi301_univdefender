@@ -126,16 +126,24 @@ def afficher_partie(self, partie):
         pygame.draw.rect(self.fenetre, (231, 76, 60), (etudiant.coords[0] - 10, etudiant.coords[1] - 30, 20, 3))   #Rouge
         pygame.draw.rect(self.fenetre, (46, 204, 113), (etudiant.coords[0] - 10, etudiant.coords[1] - 30, (etudiant.vie / etudiant.vie_max)*20, 3))   #Vert
 
+        #Affichage filiere
+        texte_filiere = creer_police(taille=10).render(str(etudiant.filiere.name).upper(), True, (0, 0, 0))
+        self.fenetre.blit(texte_filiere, (etudiant.coords[0] - texte_filiere.get_width() // 2 - 2, etudiant.coords[1] + 25))
 
     #Actualisation enseignants
     for enseignant in partie.enseignants:
         img_enseignant = pygame.image.load(enseignant.sprite)
         self.fenetre.blit(img_enseignant, (enseignant.coords[0] - 20, enseignant.coords[1] - 20))
 
-        #Affichage portée si curseur sur la tour
+        #Affichage si curseur sur l'enseignant
         curseur_x, curseur_y = pygame.mouse.get_pos()
         if ((enseignant.coords[0]-curseur_x)**2 + (enseignant.coords[1]-curseur_y)**2)**0.5 < 20:
+            #Portée
             pygame.draw.circle(self.fenetre, (127, 127, 255), enseignant.coords, enseignant.portee, 1)
+            #Matiere
+            texte_matiere = creer_police(taille=10).render(str(enseignant.matiere.name).capitalize() + "  Niv. " + str(enseignant.tier), True, (0, 0, 0))
+            self.fenetre.blit(texte_matiere, (enseignant.coords[0] - texte_matiere.get_width() // 2 - 2, enseignant.coords[1] + 25))
+
 
 
     #Affichage varibles (argent, vies...)

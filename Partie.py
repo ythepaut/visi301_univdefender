@@ -1,10 +1,12 @@
 """Module Partie"""
 
 import pygame
+import random
 
 from enums.Statut import Statut
 from enums.Menu import Menu
 from enums.Matiere import Matiere
+from enums.Filiere import Filiere
 from Etudiant import Etudiant
 
 class Partie():
@@ -27,7 +29,7 @@ class Partie():
         self.file_attente_vague = []
         self.dernier_apparition = 0
         self.vie = 10
-        self.argent = 100
+        self.argent = 10000
         self.matiere_courante = Matiere.HISTOIRE
 
 
@@ -119,7 +121,7 @@ class Partie():
 
                 for i in range(len(effectifs)-1, -1, -1):
                     for j in range(0, effectifs[i]):
-                        etudiant = Etudiant(self.carte.chemin[0], self, i+1)
+                        etudiant = Etudiant(self.carte.chemin[0], self, i+1, random.choice(list(Filiere)))
                         self.file_attente_vague += [(pygame.time.get_ticks() + 500*j, etudiant)]
 
 

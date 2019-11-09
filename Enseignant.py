@@ -9,17 +9,20 @@ class Enseignant:
     """Classe Enseignant : Defenses."""
 
 
-    def __init__(self, coords, partie, matiere):
+    def __init__(self, coords, partie, tier, matiere):
         """Constructeur classe Enseignant
 
         :param coords: Coordonnées de l'enseignant [x,y].
         :param partie: Partie à laquelle appartient l'enseignant
+        :param tier: Entier representant le eniveau de l'enseignant
         :param matiere: Matiere de l'enseignant
         """
         self.coords = coords
         self.partie = partie
         self.dernier_tir = 0
         self.sprite = os.path.join("ressources", "img", "enseignant.png")
+        self.tier = tier
+        self.matiere = matiere
 
         enseignantutils = EnseignantUtils()
         if matiere == Matiere.HISTOIRE:
@@ -50,7 +53,16 @@ class Enseignant:
             mtn = pygame.time.get_ticks()                           #
             if mtn - self.dernier_tir >= self.cadance * 1000:       #Delai entre les tirs
                 self.dernier_tir = mtn                              #
-                cible.degats(self.degats)
+                cible.degats(self.matiere, self.degats)
+
+
+    def evoluer(self):
+        """Procedure : Augmente le tier de l'enseignant."""
+        self.tier += 1
+        self.prix *= int(self.tier * 0.5)
+        self.portee *= int(self.tier * 0.5)
+        self.cadance -= int(self.tier * 0.1)
+        self.degats += int(self.tier * 3)
 
 
 class EnseignantUtils:

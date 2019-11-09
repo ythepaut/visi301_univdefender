@@ -1,15 +1,19 @@
 """Module Etudiant"""
 
 import os
+from enums.Filiere import Filiere
+from enums.Matiere import Matiere
 
 class Etudiant:
     """Classe Etudiant : Ennemis du jeu."""
 
-    def __init__(self, coords, partie, tier):
+    def __init__(self, coords, partie, tier, filiere):
         """Constructeur classe Etudiant
 
         :param coords: Coordonnées initiales de l'etudiant [x,y].
         :param partie: Partie à laquelle appartient l'etudiant
+        :param tier: Entier representant le niveau de l'etudiant.
+        :param filiere: (Enum) Filire de l'etudiant.
         """
         self.coords = coords
         self.point_passage = 0
@@ -18,6 +22,8 @@ class Etudiant:
         self.vie_max = 100 * (1+ partie.vague/20)
         self.vitesse = 1
         self.recompense = 5 * (1+ partie.vague/50)
+
+        self.filiere = filiere
 
         if tier == 2:
             self.sprite = [os.path.join("ressources", "img", "etudiant2_1.png"), os.path.join("ressources", "img", "etudiant2_2.png")]
@@ -57,10 +63,30 @@ class Etudiant:
             self.coords = [self.coords[0] + d_x*self.vitesse, self.coords[1] + d_y*self.vitesse]
 
 
-    def degats(self, vie):
+    def degats(self, matiere, vie):
         """Procedure qui fait dimunuer la vie de l'Etudiants (et c'est cruel)"""
 
-        self.vie -= vie
+        multiplicateur = 1 #Modifie les degats en fonction de la filiere de l'etudiant et de la matiere de l'enseignant.
+
+        if matiere == Matiere.INFO:
+            if self.filiere == Filiere.MIST:
+                multiplicateur = 0.3
+            elif self.filiere == Filiere.MPC:
+                multiplicateur = 1.3
+            elif self.filiere == Filiere.STAPS:
+                multiplicateur = 1.8
+        elif matiere == Matiere.MATHS:
+            if self.filiere == Filiere.MIST:
+                multiplicateur = 1.6
+            elif self.filiere == Filiere.MPC:
+                multiplicateur = 0.6
+            elif self.filiere == Filiere.STAPS:
+                multiplicateur = 1.2
+
+
+        self.vie -= int(vie * multiplicateur)
+
+        #Etudiant décédé ?
         if self.vie < 0:
             self.partie.retirer_etudiant(self)
             self.partie.argent += self.recompense

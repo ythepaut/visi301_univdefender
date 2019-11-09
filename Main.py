@@ -11,7 +11,7 @@ import pygame
 
 from Affichage import Affichage
 from Carte import Carte
-from Enseignant import *
+from Enseignant import Enseignant, EnseignantUtils
 from Partie import Partie
 from enums.Menu import Menu
 from enums.Matiere import Matiere
@@ -70,13 +70,19 @@ def ecoute_evenements(evenements):
                     emplacement = carte.emplacement_le_plus_proche((x, y))
                     if emplacement is not None:
                         if not carte.est_emplacement_utilise(emplacement):
-                            enseignant = Enseignant(emplacement, partie, partie.matiere_courante)
+                            enseignant = Enseignant(emplacement, partie, 1, partie.matiere_courante)
                             carte.utiliser_emplacement(emplacement)
                             partie.ajouter_enseignant(enseignant)
                             partie.argent -= enseignantutils.get_prix(partie.matiere_courante)
                             affichage.afficher_message("Enseignant ajouté.", 2)
                         else:
-                            affichage.afficher_message("Emplacement deja utilisé", 2)
+                            enseignant = partie.get_enseignant(emplacement)
+                            if partie.argent >= enseignant.prix * (enseignant.tier + 1):
+                                partie.argent -= enseignant.prix * (enseignant.tier + 1)
+                                enseignant.evoluer()
+                                affichage.afficher_message("Enseignant évolué.", 2)
+                            else:
+                                affichage.afficher_message("Il vous manque " + str(enseignant.prix * (enseignant.tier + 1)) + " pour améliorer.", 2)
                     else:
                         affichage.afficher_message("Veuillez cliquer sur un emplacement valide", 2)
                 else:
@@ -100,9 +106,9 @@ def ecoute_evenements(evenements):
             if affichage.menu == Menu.AUCUN:
                 #Retirer un enseignant
                 emplacement = carte.emplacement_le_plus_proche((x, y))
-                if (carte.est_emplacement_utilise(emplacement)):
+                if carte.est_emplacement_utilise(emplacement):
                     enseignant = partie.get_enseignant(emplacement)
-                    if (enseignant is not None):
+                    if enseignant is not None:
                         partie.retirer_enseignant(enseignant)
                         partie.argent += 25
                         affichage.afficher_message("Vous avez licencié cet enseignant.", 2)
@@ -110,9 +116,9 @@ def ecoute_evenements(evenements):
 
         elif evenement.type == pygame.MOUSEBUTTONDOWN and (evenement.button == 5 or evenement.button == 4): #Changement de matiere enseignant :
             if evenement.button == 5:
-                partie.matiere_courante = Matiere((partie.matiere_courante.value + 1) % len(Matiere))
+                partie.matiere_courante = Matiere((partie.matiere_courante.value+1) % len(Matiere))
             else:
-                partie.matiere_courante = Matiere((partie.matiere_courante.value - 1) % len(Matiere))
+                partie.matiere_courante = Matiere((partie.matiere_courante.value-1) % len(Matiere))
 
     return continuer
 
