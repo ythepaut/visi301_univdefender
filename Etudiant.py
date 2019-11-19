@@ -3,6 +3,7 @@
 import os
 from enums.Filiere import Filiere
 from enums.Matiere import Matiere
+from enums.EvenementsAleatoires import EvenementsAleatoires
 
 class Etudiant:
     """Classe Etudiant : Ennemis du jeu."""
@@ -60,7 +61,11 @@ class Etudiant:
             d_x = max(-1, min(1, dir_x))
             d_y = max(-1, min(1, dir_y))
 
-            self.coords = [self.coords[0] + d_x*self.vitesse, self.coords[1] + d_y*self.vitesse]
+            vitesse_totale = self.vitesse
+            if self.partie.evenement == EvenementsAleatoires.RETOUR_VACANCES:
+                vitesse_totale = self.vitesse * 1.2
+
+            self.coords = [self.coords[0] + d_x * vitesse_totale, self.coords[1] + d_y * vitesse_totale]
 
 
     def degats(self, matiere, vie):
@@ -82,6 +87,12 @@ class Etudiant:
                 multiplicateur = 0.6
             elif self.filiere == Filiere.STAPS:
                 multiplicateur = 1.2
+
+        #Gestion evenements aléatoires
+        if self.partie.evenement == EvenementsAleatoires.PARTIEL:
+            multiplicateur -= 0.2
+        elif self.partie.evenement == EvenementsAleatoires.VENDREDI_MATIN:
+            multiplicateur += 0.2
 
 
         self.vie -= int(vie * multiplicateur)

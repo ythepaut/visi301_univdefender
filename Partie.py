@@ -7,6 +7,7 @@ from enums.Statut import Statut
 from enums.Menu import Menu
 from enums.Matiere import Matiere
 from enums.Filiere import Filiere
+from enums.EvenementsAleatoires import EvenementsAleatoires
 from Etudiant import Etudiant
 
 class Partie():
@@ -31,6 +32,7 @@ class Partie():
         self.vie = 10
         self.argent = 100
         self.matiere_courante = Matiere.HISTOIRE
+        self.evenement = EvenementsAleatoires.AUCUN
 
 
     def ajouter_etudiant(self, etudiant):
@@ -115,7 +117,20 @@ class Partie():
             elif self.statut == Statut.ENTRE_VAGUE and self.timer <= 0:
                 self.statut = Statut.VAGUE
                 self.vague += 1
-                self.affichage.afficher_message("Nouvelle vague ! (" + str(self.vague) + ")", 3)
+
+                #Choix evenements aléatoire
+                msg_evenement = ""
+                if self.vague % 7 == 5:
+                    self.evenement = EvenementsAleatoires.VENDREDI_MATIN
+                    msg_evenement = " - Vendredi matin ! Les etudiants sont affaiblis."
+                elif self.vague % 18 == 0:
+                    self.evenement = EvenementsAleatoires.PARTIEL
+                    msg_evenement = " - Partiel ! Les etudiants sont entrainés."
+                elif self.vague % 30 == 0:
+                    self.evenement = EvenementsAleatoires.RETOUR_VACANCES
+                    msg_evenement = " - Retour de vacances ! Les etudiants sont en forme et vont plus vite."
+
+                self.affichage.afficher_message("Nouvelle vague ! (" + str(self.vague) + ")" + msg_evenement, 3)
 
                 effectifs = effectifs_vague(self.vague)
 
