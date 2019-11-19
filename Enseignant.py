@@ -51,7 +51,7 @@ class Enseignant:
         cible = cible_ideale(self, self.partie.etudiants)
         if cible is not None:
             mtn = pygame.time.get_ticks()                           #
-            if mtn - self.dernier_tir >= self.cadance * 1000:       #Delai entre les tirs
+            if mtn - self.dernier_tir >= self.cadence * 1000:       #Delai entre les tirs
                 self.dernier_tir = mtn                              #
                 cible.degats(self.matiere, self.degats)
 
