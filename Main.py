@@ -31,9 +31,9 @@ enseignantutils = EnseignantUtils()
 
 
 #Musique
-#pygame.mixer.music.load(os.path.join("ressources", "audio", "musique.wav"))
-#pygame.mixer.music.play(-1, 0.0)
-#pygame.mixer.music.set_volume(0.3)
+pygame.mixer.music.load(os.path.join("ressources", "audio", "musique.wav"))
+pygame.mixer.music.play(-1, 0.0)
+pygame.mixer.music.set_volume(0.3)
 
 
 execution = True
