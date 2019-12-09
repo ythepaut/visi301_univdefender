@@ -30,7 +30,7 @@ class Enseignant:
             self.portee = 120
             self.cadance = 1
             self.degats = 40
-            self.sprite = os.path.join("ressources", "img", "enseignant.png")
+            self.sprite = os.path.join("ressources", "img", "enseignant_histoire.png")
         elif matiere == Matiere.MATHS:
             self.prix = enseignantutils.get_prix(matiere)
             self.portee = 180
