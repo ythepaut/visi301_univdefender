@@ -43,6 +43,12 @@ class Enseignant:
             self.cadance = 1.3
             self.degats = 35
             self.sprite = os.path.join("ressources", "img", "enseignant_info.png")
+        elif matiere == Matiere.SPORT:
+            self.prix = enseignantutils.get_prix(matiere)
+            self.portee = 150
+            self.cadance = 0.8
+            self.degats = 20
+            self.sprite = os.path.join("ressources", "img", "enseignant.png")
 
 
     def tirer(self):
@@ -79,6 +85,8 @@ class EnseignantUtils:
             resultat = 100
         elif matiere == Matiere.INFO:
             resultat = 75
+        elif matiere == Matiere.SPORT:
+            resultat = 80
         return resultat
 
 
