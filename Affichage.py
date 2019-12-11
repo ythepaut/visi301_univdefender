@@ -1,7 +1,9 @@
 """Module Affichage"""
 
+import os
 import pygame
 from enums.Menu import Menu
+from enums.Matiere import Matiere
 
 #Constantes
 ECRAN_X = 1080
@@ -13,7 +15,7 @@ class Affichage:
 
     def __init__(self):
         """Constructeur classe Affichage"""
-        
+
         #Attributs
         self.menu = Menu.AUCUN
         self.fenetre = pygame.display.set_mode((ECRAN_X, ECRAN_Y))
@@ -155,8 +157,20 @@ def afficher_partie(self, partie):
 
 
     #Affichage Matiere courante
-    texte_matiere = creer_police().render("Matiere : " + str(partie.matiere_courante), True, (0, 0, 0))
-    self.fenetre.blit(texte_matiere, (800, 690))
+    sprite = os.path.join("ressources", "img", "enseignant.png")
+    if partie.matiere_courante == Matiere.HISTOIRE:
+        sprite = os.path.join("ressources", "img", "enseignant.png")
+    elif partie.matiere_courante == Matiere.MATHS:
+        sprite = os.path.join("ressources", "img", "enseignant_math.png")
+    elif partie.matiere_courante == Matiere.INFO:
+        sprite = os.path.join("ressources", "img", "enseignant_info.png")
+    img_enseignant_courant = pygame.image.load(sprite)
+    self.fenetre.blit(img_enseignant_courant, (1000, 670))
+    txt_enseignant_courant = creer_police(taille=12).render(partie.matiere_courante.name, True, (0, 0, 0))
+    self.fenetre.blit(txt_enseignant_courant, (1020 - txt_enseignant_courant.get_width() // 2, 650))
+    txt_selection = creer_police(taille=16).render("SELECTION :", True, (0, 0, 0))
+    self.fenetre.blit(txt_selection, (1020 - txt_selection.get_width() // 2, 630))
+
 
 
     #Affichage message titre

@@ -42,7 +42,7 @@ class Enseignant:
             self.portee = 200
             self.cadance = 1.3
             self.degats = 35
-            self.sprite = os.path.join("ressources", "img", "enseignant.png")
+            self.sprite = os.path.join("ressources", "img", "enseignant_info.png")
 
 
     def tirer(self):
