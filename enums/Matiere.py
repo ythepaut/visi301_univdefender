@@ -7,3 +7,4 @@ class Matiere(Enum):
     HISTOIRE = 0
     MATHS = 1
     INFO = 2
+    SPORT = 3

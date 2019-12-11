@@ -87,6 +87,20 @@ class Etudiant:
                 multiplicateur = 0.6
             elif self.filiere == Filiere.STAPS:
                 multiplicateur = 1.2
+        elif matiere == Matiere.SPORT:
+            if self.filiere == Filiere.MIST:
+                multiplicateur = 1.6
+            elif self.filiere == Filiere.MPC:
+                multiplicateur = 1.4
+            elif self.filiere == Filiere.STAPS:
+                multiplicateur = 0.6
+        
+
+        #Gestion evenements aléatoires
+        if self.partie.evenement == EvenementsAleatoires.PARTIEL:
+            multiplicateur -= 0.2
+        elif self.partie.evenement == EvenementsAleatoires.VENDREDI_MATIN:
+            multiplicateur += 0.2
 
         #Gestion evenements aléatoires
         if self.partie.evenement == EvenementsAleatoires.PARTIEL:
