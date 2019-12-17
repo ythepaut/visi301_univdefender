@@ -4,10 +4,18 @@ Les élèves de l'université ont décidé de se rebeller suite à leurs mauvais
 
 # Comment jouer ?
 
+**Lancer le jeu**
+
 - Python et sa librairie Pygame doivent être installés sur votre machine.
 - Lancez le programme avec la commande <code>python3 Main.py</code> ou en executant directement <code>Main.py</code> depuis l'explorateur de fichier.
 - Appuyez sur <code>ESC</code> pour mettre en pause ou quitter le jeu. 
--Toutes les autres actions se font à la souris (clic gauche pour placer et améliorer une tour, molette pour changer de type de tour, clic droit pour vendre une tour).
+
+**Controls**
+
+- Molette : Changer d'enseignant.
+- Clic gauche : Placer un enseignant.
+- Clic droit : Supprimer un enseignant.
+- <code>M</code> pour activer/désactiver la musique.
 
 Bon jeu !
 
