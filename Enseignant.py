@@ -27,27 +27,27 @@ class Enseignant:
         enseignantutils = EnseignantUtils()
         if matiere == Matiere.HISTOIRE:
             self.prix = enseignantutils.get_prix(matiere)
-            self.portee = 120
+            self.portee = 160
             self.cadence = 1
             self.degats = 40
             self.sprite = os.path.join("ressources", "img", "enseignant_histoire.png")
         elif matiere == Matiere.MATHS:
             self.prix = enseignantutils.get_prix(matiere)
-            self.portee = 180
+            self.portee = 200
             self.cadence = 0.9
             self.degats = 25
             self.sprite = os.path.join("ressources", "img", "enseignant_math.png")
         elif matiere == Matiere.INFO:
             self.prix = enseignantutils.get_prix(matiere)
-            self.portee = 200
-            self.cadence = 1.3
-            self.degats = 35
+            self.portee = 150
+            self.cadence = 0.5
+            self.degats = 10
             self.sprite = os.path.join("ressources", "img", "enseignant_info.png")
         elif matiere == Matiere.SPORT:
             self.prix = enseignantutils.get_prix(matiere)
-            self.portee = 150
-            self.cadence = 0.8
-            self.degats = 20
+            self.portee = 300
+            self.cadence = 3
+            self.degats = 50
             self.sprite = os.path.join("ressources", "img", "enseignant.png")
 
 
@@ -66,8 +66,8 @@ class Enseignant:
         """Procedure : Augmente le tier de l'enseignant."""
         self.tier += 1
         self.prix *= int(self.tier * 0.5)
-        self.portee += int(self.tier *10)
-        self.cadence -= int(self.tier * 0.1)
+        self.portee += int(self.tier *5)
+        self.cadence -= int(self.tier * 0.05)
         self.degats += int(self.tier * 5)
 
 

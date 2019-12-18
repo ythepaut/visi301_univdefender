@@ -159,7 +159,7 @@ def afficher_partie(self, partie):
     #Affichage Matiere courante
     sprite = os.path.join("ressources", "img", "enseignant.png")
     if partie.matiere_courante == Matiere.HISTOIRE:
-        sprite = os.path.join("ressources", "img", "enseignant.png")
+        sprite = os.path.join("ressources", "img", "enseignant_histoire.png")
     elif partie.matiere_courante == Matiere.MATHS:
         sprite = os.path.join("ressources", "img", "enseignant_math.png")
     elif partie.matiere_courante == Matiere.INFO:
