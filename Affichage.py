@@ -22,6 +22,8 @@ class Affichage:
         self.fenetre = pygame.display.set_mode((ECRAN_X, ECRAN_Y))
 
         self.msg = ["", 0]  #Message titre à afficher en haut de l'ecran [String Titre, int nb_tick_expiration]
+        
+        self.ECRAN_IPS = ECRAN_IPS
 
         pygame.font.init()
         pygame.display.set_caption("Univ Defender")
@@ -31,7 +33,13 @@ class Affichage:
         """Fonction qui retourne la frequence d'affichage.
         :return: int
         """
-        return ECRAN_IPS
+        return self.ECRAN_IPS
+
+    def set_ips(self, ips):
+        """Fonction qui modifie la frequence d'affichage.
+        :param ips: int
+        """
+        self.ECRAN_IPS = ips
 
     def get_ecran_x(self):
         """Fonction qui retourne la largeur de l'ecran.
@@ -64,6 +72,16 @@ class Affichage:
         :param temps: Entier representant la durée d'affichage du message.
         """
         self.msg = [message, pygame.time.get_ticks() + temps*ECRAN_IPS*17]
+
+
+    def tir(x_1, y_1, x_2, y_2):
+        """Procedure : Affiche un trait qui symbolise le tir d'un enseignant
+        :param x_1: X origine
+        :param y_1: Y origine
+        :param x_2: X arrivée
+        :param y_2: Y arrivée"""
+        pygame.draw.line(self.fenetre, (255, 0, 0), (x_1, y_1), (x_2, y_2))
+
 
 def afficher_menu(self, partie):
     """Procedure : Affiche les differents menus"""

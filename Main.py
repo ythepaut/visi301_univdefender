@@ -73,6 +73,14 @@ def ecoute_evenements(evenements, musique, carte):
                 musique = True
                 pygame.mixer.music.set_volume(0.3)
 
+        #Vitesse
+        elif evenement.type == pygame.KEYDOWN and evenement.key == pygame.K_LEFT:
+            affichage.set_ips(60)
+            affichage.afficher_message(str(affichage.get_ips()), 2)
+        elif evenement.type == pygame.KEYDOWN and evenement.key == pygame.K_RIGHT:
+            affichage.set_ips(120)
+            affichage.afficher_message(str(affichage.get_ips()), 2)
+
         if evenement.type == pygame.MOUSEBUTTONDOWN and evenement.button == 1:  #Clic gauche ?
             x, y = pygame.mouse.get_pos()
 
@@ -154,7 +162,6 @@ carte_courante = carte1
 
 #Boucle principale
 while execution:
-
 
     clock.tick(affichage.get_ips())  #Frequence d'affichage ecran
 

@@ -31,7 +31,7 @@ class Partie():
         self.dernier_apparition = 0
         self.vie = 10
         ##Valeur pour le test de la map, valeur original 100
-        self.argent = 100000000000000 
+        self.argent = 100
         self.matiere_courante = Matiere.HISTOIRE
         self.evenement = EvenementsAleatoires.AUCUN
 
@@ -68,6 +68,12 @@ class Partie():
             if enseignant.coords == coords:
                 resultat = enseignant
         return resultat
+
+
+    def get_affichage(self):
+        """Fonction qui retourne l'affichage de la partie.
+        :return: Affichage"""
+        return self.affichage
 
 
 

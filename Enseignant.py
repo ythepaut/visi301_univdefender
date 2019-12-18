@@ -24,6 +24,8 @@ class Enseignant:
         self.tier = tier
         self.matiere = matiere
 
+        self.afficher_tirs = True
+
         enseignantutils = EnseignantUtils()
         if matiere == Matiere.HISTOIRE:
             self.prix = enseignantutils.get_prix(matiere)
@@ -60,6 +62,10 @@ class Enseignant:
             if mtn - self.dernier_tir >= self.cadence * 1000:       #Delai entre les tirs
                 self.dernier_tir = mtn                              #
                 cible.degats(self.matiere, self.degats)
+
+                if self.afficher_tirs:
+                    pygame.draw.line(self.partie.get_affichage().fenetre, (255, 0, 0), (self.coords[0], self.coords[1]), (cible.coords[0], cible.coords[1]))
+                    #self.partie.get_affichage().tir(self.coords[0], self.coords[1], cible.coords[0], cible.coords[1])
 
 
     def evoluer(self):
