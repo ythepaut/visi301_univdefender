@@ -75,7 +75,7 @@ def afficher_menu(self, partie):
 
     if menu == Menu.PAUSE:
         #Cadre
-        ombre = pygame.Surface((500, 300), pygame.SRCALPHA)
+        ombre = pygame.Surface((500, 350), pygame.SRCALPHA)
         ombre.fill((0, 0, 0, 128))
         self.fenetre.blit(ombre, (ECRAN_X // 2 - 250, ECRAN_Y // 2 - 150))
 
@@ -90,15 +90,21 @@ def afficher_menu(self, partie):
         btntxt_reprendre = creer_police(taille=18, gras=True).render("REPRENDRE LA PARTIE", True, (255, 255, 255))
         self.fenetre.blit(btntxt_reprendre, (ECRAN_X // 2 - 200 + 200 - btntxt_reprendre.get_width() // 2, 336 - btntxt_reprendre.get_height()))
         
+        bouton_cartes = pygame.Surface((400, 50), pygame.SRCALPHA)
+        bouton_cartes.fill((46, 204, 113, 255))
+        self.fenetre.blit(bouton_cartes, (ECRAN_X // 2 - 200, 390 - 25))
+        btntxt_reprendre = creer_police(taille=18, gras=True).render("CHANGER DE CARTE", True, (255, 255, 255))
+        self.fenetre.blit(btntxt_reprendre, (ECRAN_X // 2 - 200 + 200 - btntxt_reprendre.get_width() // 2, 401 - btntxt_reprendre.get_height()))
+        
         #Infos
         info_touche = creer_police(taille=18).render("Clic Gauche : Placer un enseignant", True, (255, 255, 255))
-        self.fenetre.blit(info_touche, (ECRAN_X  // 2 - info_touche.get_width() // 2, 405 - info_touche.get_height() // 2))
-        info_touche = creer_police(taille=18).render("Clic Droit : Retirer un enseignant", True, (255, 255, 255))
-        self.fenetre.blit(info_touche, (ECRAN_X  // 2 - info_touche.get_width() // 2, 430 - info_touche.get_height() // 2))
-        info_touche = creer_police(taille=18).render("Molette : Changer d'enseignant", True, (255, 255, 255))
         self.fenetre.blit(info_touche, (ECRAN_X  // 2 - info_touche.get_width() // 2, 455 - info_touche.get_height() // 2))
-        info_touche = creer_police(taille=18).render("M : Couper la musique", True, (255, 255, 255))
+        info_touche = creer_police(taille=18).render("Clic Droit : Retirer un enseignant", True, (255, 255, 255))
         self.fenetre.blit(info_touche, (ECRAN_X  // 2 - info_touche.get_width() // 2, 480 - info_touche.get_height() // 2))
+        info_touche = creer_police(taille=18).render("Molette : Changer d'enseignant", True, (255, 255, 255))
+        self.fenetre.blit(info_touche, (ECRAN_X  // 2 - info_touche.get_width() // 2, 505 - info_touche.get_height() // 2))
+        info_touche = creer_police(taille=18).render("M : Couper la musique", True, (255, 255, 255))
+        self.fenetre.blit(info_touche, (ECRAN_X  // 2 - info_touche.get_width() // 2, 530 - info_touche.get_height() // 2))
 
     elif menu == Menu.PRINCIPAL:
         #Cadre
@@ -115,7 +121,7 @@ def afficher_menu(self, partie):
         self.fenetre.blit(carte1, (260, 300))
         carte1 = pygame.image.load(os.path.join("ressources", "img", "miniature_carte2.png"))
         self.fenetre.blit(carte1, (570, 300))
-        
+
 
     elif menu == Menu.PERDU:
         #Cadre
@@ -133,6 +139,12 @@ def afficher_menu(self, partie):
         self.fenetre.blit(bouton_reprendre, (ECRAN_X // 2 - 200, 325 - 25))
         btntxt_reprendre = creer_police(taille=18, gras=True).render("REFAIRE UNE PARTIE", True, (255, 255, 255))
         self.fenetre.blit(btntxt_reprendre, (ECRAN_X // 2 - 200 + 200 - btntxt_reprendre.get_width() // 2, 336 - btntxt_reprendre.get_height()))
+        
+        bouton_cartes = pygame.Surface((400, 50), pygame.SRCALPHA)
+        bouton_cartes.fill((46, 204, 113, 255))
+        self.fenetre.blit(bouton_cartes, (ECRAN_X // 2 - 200, 390 - 25))
+        btntxt_reprendre = creer_police(taille=18, gras=True).render("CHANGER DE CARTE", True, (255, 255, 255))
+        self.fenetre.blit(btntxt_reprendre, (ECRAN_X // 2 - 200 + 200 - btntxt_reprendre.get_width() // 2, 401 - btntxt_reprendre.get_height()))
 
 
 

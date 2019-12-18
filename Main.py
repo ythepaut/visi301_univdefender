@@ -104,6 +104,8 @@ def ecoute_evenements(evenements, musique, carte):
                 #Reprendre la partie
                 if x > (affichage.get_ecran_x() // 2 - 200) and x < (affichage.get_ecran_x() // 2 + 200) and y > 300 and y < 350:
                     affichage.menu = Menu.AUCUN
+                if x > (affichage.get_ecran_x() // 2 - 200) and x < (affichage.get_ecran_x() // 2 + 200) and y > 360 and y < 410:
+                    affichage.menu = Menu.PRINCIPAL
 
             elif affichage.menu == Menu.PRINCIPAL:
                 #Reprendre la partie
@@ -112,7 +114,7 @@ def ecoute_evenements(evenements, musique, carte):
                     carte = carte1
                 elif x > 570 and x < 820 and y > 300 and y < 467:
                     affichage.menu = Menu.AUCUN
-                    carte = carte1
+                    carte = carte2
 
             elif affichage.menu == Menu.PERDU:
                 #Recommencer la partie
@@ -121,6 +123,8 @@ def ecoute_evenements(evenements, musique, carte):
                     carte.__init__(carte.chemin, carte.emplacements, carte.arriere_plan)
                     partie.__init__(carte, affichage)
                     affichage.menu = Menu.AUCUN
+                if x > (affichage.get_ecran_x() // 2 - 200) and x < (affichage.get_ecran_x() // 2 + 200) and y > 360 and y < 410:
+                    affichage.menu = Menu.PRINCIPAL
 
         elif evenement.type == pygame.MOUSEBUTTONDOWN and evenement.button == 3:    #Clic droit ?
             x, y = pygame.mouse.get_pos()
@@ -161,6 +165,7 @@ while execution:
     execution, musique, carte = ecoute_evenements(pygame.event.get(), musique, carte)
 
     if carte != carte_courante:
+        affichage = Affichage()
         partie = Partie(carte, affichage)
         carte_courante = carte
 
