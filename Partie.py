@@ -30,7 +30,8 @@ class Partie():
         self.file_attente_vague = []
         self.dernier_apparition = 0
         self.vie = 10
-        self.argent = 100
+        ##Valeur pour le test de la map, valeur original 100
+        self.argent = 100000000000000 
         self.matiere_courante = Matiere.HISTOIRE
         self.evenement = EvenementsAleatoires.AUCUN
 
