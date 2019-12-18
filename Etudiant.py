@@ -28,7 +28,7 @@ class Etudiant:
 
         if tier == 2:
             self.sprite = [os.path.join("ressources", "img", "etudiant2_1.png"), os.path.join("ressources", "img", "etudiant2_2.png")]
-            self.vie_max = self.vie_max * 1.6 * (1+ partie.vague/10)
+            self.vie_max = self.vie_max * 1.5 * (1+ partie.vague/10)
             self.vitesse = self.vitesse * 1
             self.recompense = self.recompense * 1.2 * (1+ partie.vague/10)
         elif tier == 3:
@@ -72,28 +72,34 @@ class Etudiant:
         """Procedure qui fait dimunuer la vie de l'Etudiants (et c'est cruel)"""
 
         multiplicateur = 1 #Modifie les degats en fonction de la filiere de l'etudiant et de la matiere de l'enseignant.
-
+        
+        #définition des variables de la résistance des étudiants
+        très_résistant = 0.3
+        résistant = 0.6
+        faible = 1.4
+        très_faible = 1.8
+        
         if matiere == Matiere.INFO:
             if self.filiere == Filiere.MIST:
-                multiplicateur = 0.3
+                multiplicateur = très_résistant
             elif self.filiere == Filiere.MPC:
-                multiplicateur = 1.3
+                multiplicateur = faible
             elif self.filiere == Filiere.STAPS:
-                multiplicateur = 1.8
+                multiplicateur = très_faible
         elif matiere == Matiere.MATHS:
             if self.filiere == Filiere.MIST:
-                multiplicateur = 1.6
+                multiplicateur = faible
             elif self.filiere == Filiere.MPC:
-                multiplicateur = 0.6
+                multiplicateur = résistant
             elif self.filiere == Filiere.STAPS:
-                multiplicateur = 1.2
+                multiplicateur = faible
         elif matiere == Matiere.SPORT:
             if self.filiere == Filiere.MIST:
-                multiplicateur = 1.6
+                multiplicateur = très_faible
             elif self.filiere == Filiere.MPC:
-                multiplicateur = 1.4
+                multiplicateur = faible
             elif self.filiere == Filiere.STAPS:
-                multiplicateur = 0.6
+                multiplicateur = très_résistant
         
 
         #Gestion evenements aléatoires
