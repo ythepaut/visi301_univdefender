@@ -4,6 +4,7 @@ import os
 import pygame
 from enums.Menu import Menu
 from enums.Matiere import Matiere
+from Enseignant import EnseignantUtils
 
 #Constantes
 ECRAN_X = 1080
@@ -209,6 +210,37 @@ def afficher_partie(self, partie):
     txt_selection = creer_police(taille=16).render("SELECTION :", True, (0, 0, 0))
     self.fenetre.blit(txt_selection, (1020 - txt_selection.get_width() // 2, 630))
 
+
+    #Affichage caracteristiques tour
+    curseur_x, curseur_y = pygame.mouse.get_pos()
+    if ((1020-curseur_x)**2 + (690-curseur_y)**2)**0.5 < 40:
+
+        enseignantutils = EnseignantUtils()
+        cout = enseignantutils.get_prix(partie.matiere_courante)
+
+        if partie.matiere_courante == Matiere.HISTOIRE:
+            point_fort = "-"
+            point_faible = "-"
+        elif partie.matiere_courante == Matiere.INFO:
+            point_fort = "MPC"
+            point_faible = "MIST"
+        elif partie.matiere_courante == Matiere.MATHS:
+            point_fort = "MIST"
+            point_faible = "MPC"
+        elif partie.matiere_courante == Matiere.SPORT:
+            point_fort = "MIST/MPC"
+            point_faible = "STAPS"
+        else:
+            point_fort = "-"
+            point_faible = "-"
+
+
+        txt_description = creer_police(taille=12).render("Fort contre : " + point_fort, True, (0, 0, 0))
+        self.fenetre.blit(txt_description, (900 - txt_description.get_width() // 2, 650))
+        txt_description = creer_police(taille=12).render("Faible contre : " + point_faible, True, (0, 0, 0))
+        self.fenetre.blit(txt_description, (900 - txt_description.get_width() // 2, 670))
+        txt_description = creer_police(taille=12).render("Coût : " + str(cout), True, (0, 0, 0))
+        self.fenetre.blit(txt_description, (900 - txt_description.get_width() // 2, 690))
 
 
     #Affichage message titre
