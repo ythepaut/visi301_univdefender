@@ -66,9 +66,23 @@ class Enseignant:
         """Procedure : Augmente le tier de l'enseignant."""
         self.tier += 1
         self.prix *= int(self.tier * 0.5)
-        self.portee += int(self.tier *5)
-        self.cadence -= int(self.tier * 0.05)
-        self.degats += int(self.tier * 5)
+        matiere = self.matiere
+        if matiere == Matiere.HISTOIRE:
+            self.portee += int(self.tier *5)
+            self.cadence -= int(self.tier * 0.05)
+            self.degats += int(self.tier * 5)
+        elif matiere == Matiere.MATHS:
+            self.portee += int(self.tier *5)
+            self.cadence -= int(self.tier * 0.05)
+            self.degats += int(self.tier * 5)
+        elif matiere == Matiere.INFO:
+            self.portee += int(self.tier *5)
+            self.cadence -= int(self.tier * 0.05)
+            self.degats += int(self.tier * 5)
+        elif matiere == Matiere.SPORT:
+            self.portee += int(self.tier *5)
+            self.cadence -= int(self.tier * 0.05)
+            self.degats += int(self.tier * 5)
 
 
 class EnseignantUtils:
