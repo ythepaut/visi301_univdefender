@@ -8,13 +8,14 @@ Les élèves de l'université ont décidé de se rebeller suite à leurs mauvais
 
 - Python et sa librairie Pygame doivent être installés sur votre machine.
 - Lancez le programme avec la commande <code>python3 Main.py</code> ou en executant directement <code>Main.py</code> depuis l'explorateur de fichier.
-- Appuyez sur <code>ESC</code> pour mettre en pause ou quitter le jeu. 
+- Appuyez sur <code>ESC</code> pour quitter le jeu. 
 
 **Controls**
 
 - Molette : Changer d'enseignant.
 - Clic gauche : Placer un enseignant.
 - Clic droit : Supprimer un enseignant.
+- <code>P</code> pour mettre le jeu en pause.
 - <code>M</code> pour activer/désactiver la musique.
 
 Bon jeu !

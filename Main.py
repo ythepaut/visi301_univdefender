@@ -26,27 +26,28 @@ clock = pygame.time.Clock()
 affichage = Affichage()
 carte1 = Carte([[80, 200], [840, 200], [840, 480], [70, 480]], [[130, 130], [190, 130], [250, 130], [310, 130], [370, 130], [430, 130], [490, 130], [550, 130], [610, 130], [670, 130], [730, 130], [790, 130], [850, 130], [910, 130], [130, 270], [190, 270], [250, 270], [310, 270], [370, 270], [430, 270], [490, 270], [550, 270], [610, 270], [770, 270], [910, 190], [910, 250], [910, 310], [910, 370], [910, 430], [910, 490], [910, 550], [850, 550], [790, 550], [730, 550], [670, 550], [610, 550], [550, 550], [490, 550], [430, 550], [370, 550], [310, 550], [250, 550], [190, 550], [130, 550], [130, 410], [190, 410], [250, 410], [310, 410], [370, 410], [430, 410], [490, 410], [550, 410], [610, 410], [770, 410]], os.path.join("ressources", "img", "carte1.png")) ##Carte Niveau 1
 carte2 = Carte([[285,30], [285,150],[515,150],[515,360],[675,360],[675,185],[920,185],[920,540],[630,540],[630,605],[380,605],[380,375],[220,375],[220,480], [70, 480]], [[219,153],[282,211],[437,92],[578,213],[459,349],[596,427],[738,238],[829,122],[859,328],[980,478],[861,484],[683,482],[689,601],[504,671],[436,552],[317,561],[298,432],[334,312],[161,372],[220,541]], os.path.join("ressources", "img", "carte2.png")) ##Carte Niveau 2
-carte = carte2
+carte = carte1
 partie = Partie(carte, affichage)
 
 enseignantutils = EnseignantUtils()
 
 
 #Musique
-#pygame.mixer.music.load(os.path.join("ressources", "audio", "musique.wav"))
-#pygame.mixer.music.play(-1, 0.0)
-#pygame.mixer.music.set_volume(0.3)
+pygame.mixer.music.load(os.path.join("ressources", "audio", "musique.wav"))
+pygame.mixer.music.play(-1, 0.0)
+pygame.mixer.music.set_volume(0.0)
+musique = False
 
 
 execution = True
 
 
-def ecoute_evenements(evenements):
+def ecoute_evenements(evenements, musique, carte):
     """Fonction qui traite les évenements et retourne si l'utilisateur veut quitter.
 
     :param eveenements: Liste des evenements pygame
 
-    :return: Booleen
+    :return: Booleen, Boolean
     """
 
     continuer = execution
@@ -62,6 +63,15 @@ def ecoute_evenements(evenements):
                 affichage.menu = Menu.AUCUN
             elif affichage.menu == Menu.AUCUN:
                 affichage.menu = Menu.PAUSE
+
+        #Musique
+        elif evenement.type == pygame.KEYDOWN and evenement.key == pygame.K_m:
+            if musique:
+                musique = False
+                pygame.mixer.music.set_volume(0.0)
+            else:
+                musique = True
+                pygame.mixer.music.set_volume(0.3)
 
         if evenement.type == pygame.MOUSEBUTTONDOWN and evenement.button == 1:  #Clic gauche ?
             x, y = pygame.mouse.get_pos()
@@ -95,6 +105,15 @@ def ecoute_evenements(evenements):
                 if x > (affichage.get_ecran_x() // 2 - 200) and x < (affichage.get_ecran_x() // 2 + 200) and y > 300 and y < 350:
                     affichage.menu = Menu.AUCUN
 
+            elif affichage.menu == Menu.PRINCIPAL:
+                #Reprendre la partie
+                if x > 260 and x < 510 and y > 300 and y < 467:
+                    affichage.menu = Menu.AUCUN
+                    carte = carte1
+                elif x > 570 and x < 820 and y > 300 and y < 467:
+                    affichage.menu = Menu.AUCUN
+                    carte = carte1
+
             elif affichage.menu == Menu.PERDU:
                 #Recommencer la partie
                 if x > (affichage.get_ecran_x() // 2 - 200) and x < (affichage.get_ecran_x() // 2 + 200) and y > 300 and y < 350:
@@ -122,11 +141,16 @@ def ecoute_evenements(evenements):
             else:
                 partie.matiere_courante = Matiere((partie.matiere_courante.value-1) % len(Matiere))
 
-    return continuer
+    return continuer, musique, carte
 
+
+affichage.menu = Menu.PRINCIPAL
+
+carte_courante = carte1
 
 #Boucle principale
 while execution:
+
 
     clock.tick(affichage.get_ips())  #Frequence d'affichage ecran
 
@@ -134,6 +158,10 @@ while execution:
         partie.rafraichir()
     affichage.rafraichir_ecran(partie)
 
-    execution = ecoute_evenements(pygame.event.get())
+    execution, musique, carte = ecoute_evenements(pygame.event.get(), musique, carte)
+
+    if carte != carte_courante:
+        partie = Partie(carte, affichage)
+        carte_courante = carte
 
 pygame.quit()

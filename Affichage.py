@@ -89,6 +89,33 @@ def afficher_menu(self, partie):
         self.fenetre.blit(bouton_reprendre, (ECRAN_X // 2 - 200, 325 - 25))
         btntxt_reprendre = creer_police(taille=18, gras=True).render("REPRENDRE LA PARTIE", True, (255, 255, 255))
         self.fenetre.blit(btntxt_reprendre, (ECRAN_X // 2 - 200 + 200 - btntxt_reprendre.get_width() // 2, 336 - btntxt_reprendre.get_height()))
+        
+        #Infos
+        info_touche = creer_police(taille=18).render("Clic Gauche : Placer un enseignant", True, (255, 255, 255))
+        self.fenetre.blit(info_touche, (ECRAN_X  // 2 - info_touche.get_width() // 2, 405 - info_touche.get_height() // 2))
+        info_touche = creer_police(taille=18).render("Clic Droit : Retirer un enseignant", True, (255, 255, 255))
+        self.fenetre.blit(info_touche, (ECRAN_X  // 2 - info_touche.get_width() // 2, 430 - info_touche.get_height() // 2))
+        info_touche = creer_police(taille=18).render("Molette : Changer d'enseignant", True, (255, 255, 255))
+        self.fenetre.blit(info_touche, (ECRAN_X  // 2 - info_touche.get_width() // 2, 455 - info_touche.get_height() // 2))
+        info_touche = creer_police(taille=18).render("M : Couper la musique", True, (255, 255, 255))
+        self.fenetre.blit(info_touche, (ECRAN_X  // 2 - info_touche.get_width() // 2, 480 - info_touche.get_height() // 2))
+
+    elif menu == Menu.PRINCIPAL:
+        #Cadre
+        ombre = pygame.Surface((700, 300), pygame.SRCALPHA)
+        ombre.fill((0, 0, 0, 128))
+        self.fenetre.blit(ombre, (ECRAN_X // 2 - 350, ECRAN_Y // 2 - 150))
+
+        #Titre
+        titre_menu = creer_police(taille=30, gras=True).render("SELECTIONNER LA CARTE", True, (255, 255, 255))
+        self.fenetre.blit(titre_menu, (ECRAN_X  // 2 - titre_menu.get_width() // 2, 250 - titre_menu.get_height() // 2))
+
+        #Cartes
+        carte1 = pygame.image.load(os.path.join("ressources", "img", "miniature_carte1.png"))
+        self.fenetre.blit(carte1, (260, 300))
+        carte1 = pygame.image.load(os.path.join("ressources", "img", "miniature_carte2.png"))
+        self.fenetre.blit(carte1, (570, 300))
+        
 
     elif menu == Menu.PERDU:
         #Cadre
@@ -145,7 +172,6 @@ def afficher_partie(self, partie):
             #Matiere
             texte_matiere = creer_police(taille=10).render(str(enseignant.matiere.name).capitalize() + "  Niv. " + str(enseignant.tier), True, (0, 0, 0))
             self.fenetre.blit(texte_matiere, (enseignant.coords[0] - texte_matiere.get_width() // 2 - 2, enseignant.coords[1] + 25))
-
 
 
     #Affichage varibles (argent, vies...)
