@@ -74,32 +74,32 @@ class Etudiant:
         multiplicateur = 1 #Modifie les degats en fonction de la filiere de l'etudiant et de la matiere de l'enseignant.
         
         #définition des variables de la résistance des étudiants
-        très_résistant = 0.3
-        résistant = 0.6
+        tres_resistant = 0.3
+        resistant = 0.6
         faible = 1.4
-        très_faible = 1.8
+        tres_faible = 1.8
         
         if matiere == Matiere.INFO:
             if self.filiere == Filiere.MIST:
-                multiplicateur = très_résistant
+                multiplicateur = tres_resistant
             elif self.filiere == Filiere.MPC:
                 multiplicateur = faible
             elif self.filiere == Filiere.STAPS:
-                multiplicateur = très_faible
+                multiplicateur = tres_faible
         elif matiere == Matiere.MATHS:
             if self.filiere == Filiere.MIST:
                 multiplicateur = faible
             elif self.filiere == Filiere.MPC:
-                multiplicateur = résistant
+                multiplicateur = resistant
             elif self.filiere == Filiere.STAPS:
                 multiplicateur = faible
         elif matiere == Matiere.SPORT:
             if self.filiere == Filiere.MIST:
-                multiplicateur = très_faible
+                multiplicateur = tres_faible
             elif self.filiere == Filiere.MPC:
                 multiplicateur = faible
             elif self.filiere == Filiere.STAPS:
-                multiplicateur = très_résistant
+                multiplicateur = tres_resistant
         
 
         #Gestion evenements aléatoires
