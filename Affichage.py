@@ -4,6 +4,7 @@ import os
 import pygame
 from enums.Menu import Menu
 from enums.Matiere import Matiere
+from Enseignant import Enseignant
 from Enseignant import EnseignantUtils
 
 #Constantes
@@ -203,6 +204,17 @@ def afficher_partie(self, partie):
             #Matiere
             texte_matiere = creer_police(taille=10).render(str(enseignant.matiere.name).capitalize() + "  Niv. " + str(enseignant.tier), True, (0, 0, 0))
             self.fenetre.blit(texte_matiere, (enseignant.coords[0] - texte_matiere.get_width() // 2 - 2, enseignant.coords[1] + 25))
+            
+            #Affichage Amélioration
+            prix = enseignant.prix
+            prix_evol = get_prix_evol(enseignant)
+            degat_evol = 0
+            text_Amelio = creer_police(taille=10).render("Amélioration : Coût : "+ str(prix_evol), True, (0, 0, 0))
+            self.fenetre.blit(text_Amelio, (enseignant.coords[0] - texte_matiere.get_width() // 2 - 2, enseignant.coords[1] + 40))
+            txt_description = creer_police(taille=10).render("Portée : " + str(prix) + " --> " + str(prix_evol), True, (0, 0, 0))
+            self.fenetre.blit(txt_description, (enseignant.coords[0] - texte_matiere.get_width() // 2 - 2, enseignant.coords[1] + 55))
+            txt_description = creer_police(taille=10).render("Dégat : "+ str(degat_evol), True, (0, 0, 0))
+            self.fenetre.blit(txt_description, (enseignant.coords[0] - texte_matiere.get_width() // 2 - 2, enseignant.coords[1] + 70))
 
 
     #Affichage varibles (argent, vies...)
@@ -212,6 +224,7 @@ def afficher_partie(self, partie):
     texte_argent = creer_police().render("✮ " + str(int(partie.argent)), True, (0, 0, 0))
     self.fenetre.blit(texte_argent, (980, 30))
 
+    
 
     #Affichage Matiere courante
     sprite = os.path.join("ressources", "img", "enseignant.png")
