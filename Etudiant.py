@@ -20,20 +20,20 @@ class Etudiant:
         self.point_passage = 0
         self.partie = partie
         self.sprite = [os.path.join("ressources", "img", "etudiant1_1.png"), os.path.join("ressources", "img", "etudiant1_2.png")]
-        self.vie_max = 100 * (1+ partie.vague/20)
-        self.vitesse = 1
-        self.recompense = 5 * (1+ partie.vague/50)
+        self.vie_max = 100 * (1+ partie.vague/10)
+        self.vitesse = 1 * (1+ partie.vague/20)
+        self.recompense = 3 * (1+ partie.vague/50)
 
         self.filiere = filiere
 
         if tier == 2:
             self.sprite = [os.path.join("ressources", "img", "etudiant2_1.png"), os.path.join("ressources", "img", "etudiant2_2.png")]
-            self.vie_max = self.vie_max * 1.5 * (1+ partie.vague/10)
+            self.vie_max = self.vie_max * 2 * (1+ partie.vague/10)
             self.vitesse = self.vitesse * 1
             self.recompense = self.recompense * 1.2 * (1+ partie.vague/10)
         elif tier == 3:
             self.sprite = [os.path.join("ressources", "img", "etudiant3_1.png"), os.path.join("ressources", "img", "etudiant3_2.png")]
-            self.vie_max = self.vie_max * 2 * (1+ partie.vague/10)
+            self.vie_max = self.vie_max * 3 * (1+ partie.vague/10)
             self.vitesse = self.vitesse * 1.2
             self.recompense = self.recompense * 1.5 * (1+ partie.vague/10)
         self.vie = self.vie_max
@@ -107,13 +107,6 @@ class Etudiant:
             multiplicateur -= 0.2
         elif self.partie.evenement == EvenementsAleatoires.VENDREDI_MATIN:
             multiplicateur += 0.2
-
-        #Gestion evenements aléatoires
-        if self.partie.evenement == EvenementsAleatoires.PARTIEL:
-            multiplicateur -= 0.2
-        elif self.partie.evenement == EvenementsAleatoires.VENDREDI_MATIN:
-            multiplicateur += 0.2
-
 
         self.vie -= int(vie * multiplicateur)
 

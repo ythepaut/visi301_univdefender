@@ -29,27 +29,27 @@ class Enseignant:
         enseignantutils = EnseignantUtils()
         if matiere == Matiere.HISTOIRE:
             self.prix = enseignantutils.get_prix(matiere)
-            self.portee = 150
-            self.cadence = 1
-            self.degats = 40
+            self.portee = enseignantutils.get_portee(matiere)
+            self.cadence = enseignantutils.get_cadence(matiere)
+            self.degats = enseignantutils.get_degat(matiere)
             self.sprite = os.path.join("ressources", "img", "enseignant_histoire.png")
         elif matiere == Matiere.MATHS:
             self.prix = enseignantutils.get_prix(matiere)
-            self.portee = 200
-            self.cadence = 0.9
-            self.degats = 25
+            self.portee = enseignantutils.get_portee(matiere)
+            self.cadence = enseignantutils.get_cadence(matiere)
+            self.degats = enseignantutils.get_degat(matiere)
             self.sprite = os.path.join("ressources", "img", "enseignant_math.png")
         elif matiere == Matiere.INFO:
             self.prix = enseignantutils.get_prix(matiere)
-            self.portee = 140
-            self.cadence = 0.5
-            self.degats = 5
+            self.portee = enseignantutils.get_portee(matiere)
+            self.cadence = enseignantutils.get_cadence(matiere)
+            self.degats = enseignantutils.get_degat(matiere)
             self.sprite = os.path.join("ressources", "img", "enseignant_info.png")
         elif matiere == Matiere.SPORT:
             self.prix = enseignantutils.get_prix(matiere)
-            self.portee = 300
-            self.cadence = 3
-            self.degats = 50
+            self.portee = enseignantutils.get_portee(matiere)
+            self.cadence = enseignantutils.get_cadence(matiere)
+            self.degats = enseignantutils.get_degat(matiere)
             self.sprite = os.path.join("ressources", "img", "enseignant.png")
 
 
@@ -107,6 +107,51 @@ class EnseignantUtils:
         elif matiere == Matiere.SPORT:
             resultat = 80
         return resultat
+    
+    def get_cadence(self, matiere):
+        """Fonction qui retourne la cadence de tir d'un enseignant en fonction de sa matiere.
+        :param enums.Matiere: Matiere
+        :return: Entier : Cadence."""
+        cadence = -1
+        if matiere == Matiere.HISTOIRE:
+            cadence = 1.0
+        elif matiere == Matiere.MATHS:
+            cadence = 0.9
+        elif matiere == Matiere.INFO:
+            cadence = 0.5
+        elif matiere == Matiere.SPORT:
+            cadence = 3.0
+        return cadence
+    
+    def get_degat(self, matiere):
+        """Fonction qui retourne les degats d'un enseignant en fonction de sa matiere.
+        :param enums.Matiere: Matiere
+        :return: Entier : degat."""
+        degat = -1
+        if matiere == Matiere.HISTOIRE:
+            degat = 20
+        elif matiere == Matiere.MATHS:
+            degat = 25
+        elif matiere == Matiere.INFO:
+            degat = 5
+        elif matiere == Matiere.SPORT:
+            degat = 50
+        return degat
+    
+    def get_portee(self, matiere):
+        """Fonction qui retourne la portée d'un enseignant en fonction de sa matiere.
+        :param enums.Matiere: Matiere
+        :return: Entier : portee."""
+        portee = -1
+        if matiere == Matiere.HISTOIRE:
+            portee = 150
+        elif matiere == Matiere.MATHS:
+            portee = 160
+        elif matiere == Matiere.INFO:
+            portee = 100
+        elif matiere == Matiere.SPORT:
+            portee = 200
+        return portee
 
 
 def cible_ideale(enseignant, cibles):
