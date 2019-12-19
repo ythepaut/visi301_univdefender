@@ -50,7 +50,7 @@ class Enseignant:
             self.portee = enseignantutils.get_portee(matiere)
             self.cadence = enseignantutils.get_cadence(matiere)
             self.degats = enseignantutils.get_degat(matiere)
-            self.sprite = os.path.join("ressources", "img", "enseignant.png")
+            self.sprite = os.path.join("ressources", "img", "enseignant_sport.png")
 
 
     def tirer(self):

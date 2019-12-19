@@ -221,6 +221,8 @@ def afficher_partie(self, partie):
         sprite = os.path.join("ressources", "img", "enseignant_math.png")
     elif partie.matiere_courante == Matiere.INFO:
         sprite = os.path.join("ressources", "img", "enseignant_info.png")
+    elif partie.matiere_courante == Matiere.SPORT:
+        sprite = os.path.join("ressources", "img", "enseignant_sport.png")
     img_enseignant_courant = pygame.image.load(sprite)
     self.fenetre.blit(img_enseignant_courant, (1000, 670))
     txt_enseignant_courant = creer_police(taille=12).render(partie.matiere_courante.name, True, (0, 0, 0))
