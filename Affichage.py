@@ -237,8 +237,8 @@ def afficher_partie(self, partie):
         cout = enseignantutils.get_prix(partie.matiere_courante)
 
         if partie.matiere_courante == Matiere.HISTOIRE:
-            point_fort = "-"
-            point_faible = "-"
+            point_fort = "Rien"
+            point_faible = "Rien"
         elif partie.matiere_courante == Matiere.INFO:
             point_fort = "MPC"
             point_faible = "MIST"
@@ -259,32 +259,18 @@ def afficher_partie(self, partie):
         self.fenetre.blit(txt_description, (900 - txt_description.get_width() // 2, 670))
         txt_description = creer_police(taille=12).render("Coût : " + str(cout), True, (0, 0, 0))
         self.fenetre.blit(txt_description, (900 - txt_description.get_width() // 2, 690))
-    #Affichage caractéristique tour
+    
     else :
         enseignantutils = EnseignantUtils()
-        if partie.matiere_courante == Matiere.HISTOIRE:
-            portee = enseignantutils.get_portee(partie.matiere_courante)
-            degat = enseignantutils.get_degat(partie.matiere_courante)
-            cadence = enseignantutils.get_cadence(partie.matiere_courante)
-        elif partie.matiere_courante == Matiere.INFO:
-            portee = enseignantutils.get_portee(partie.matiere_courante)
-            degat = enseignantutils.get_degat(partie.matiere_courante)
-            cadence = enseignantutils.get_cadence(partie.matiere_courante)
-        elif partie.matiere_courante == Matiere.MATHS:
-            portee = enseignantutils.get_portee(partie.matiere_courante)
-            degat = enseignantutils.get_degat(partie.matiere_courante)
-            cadence = enseignantutils.get_cadence(partie.matiere_courante)
-        elif partie.matiere_courante == Matiere.SPORT:
-            portee = enseignantutils.get_portee(partie.matiere_courante)
-            degat = enseignantutils.get_degat(partie.matiere_courante)
-            cadence = enseignantutils.get_cadence(partie.matiere_courante)
-        
-        
+        portee = enseignantutils.get_portee(partie.matiere_courante)
+        degat = enseignantutils.get_degat(partie.matiere_courante)
+        cadence = enseignantutils.get_cadence(partie.matiere_courante)
+       #Affichage caractéristique tour
         txt_description = creer_police(taille=12).render("Portée : " + str(portee), True, (0, 0, 0))
         self.fenetre.blit(txt_description, (900 - txt_description.get_width() // 2, 650))
         txt_description = creer_police(taille=12).render("Dégats : " + str(degat), True, (0, 0, 0))
         self.fenetre.blit(txt_description, (900 - txt_description.get_width() // 2, 670))
-        txt_description = creer_police(taille=12).render("Temp entre les tirs : " + str(cadence) +" s", True, (0, 0, 0))
+        txt_description = creer_police(taille=12).render("Temps entre les tirs : " + str(cadence) +" s", True, (0, 0, 0))
         self.fenetre.blit(txt_description, (900 - txt_description.get_width() // 2, 690))
         
 

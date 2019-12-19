@@ -97,16 +97,16 @@ class EnseignantUtils:
         """Fonction qui retourne le prix d'un enseignant en fonction de sa matiere.
         :param enums.Matiere: Matiere
         :return: Entier : Prix."""
-        resultat = -1
+        prix = -1
         if matiere == Matiere.HISTOIRE:
-            resultat = 50
+            prix = 50
         elif matiere == Matiere.MATHS:
-            resultat = 100
+            prix = 100
         elif matiere == Matiere.INFO:
-            resultat = 75
+            prix = 75
         elif matiere == Matiere.SPORT:
-            resultat = 80
-        return resultat
+            prix = 80
+        return prix
     
     def get_cadence(self, matiere):
         """Fonction qui retourne la cadence de tir d'un enseignant en fonction de sa matiere.
