@@ -31,7 +31,7 @@ class Partie():
         self.dernier_apparition = 0
         self.vie = 10
         ##Valeur pour le test de la map, valeur original 100
-        self.argent = 100
+        self.argent = 100000
         self.matiere_courante = Matiere.HISTOIRE
         self.evenement = EvenementsAleatoires.AUCUN
 
