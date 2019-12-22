@@ -22,7 +22,7 @@ class Etudiant:
         self.sprite = [os.path.join("ressources", "img", "etudiant1_1.png"), os.path.join("ressources", "img", "etudiant1_2.png")]
         self.vie_max = 100 * (1+ partie.vague/10)
         self.vitesse = 1 * (1+ partie.vague/20)
-        self.recompense = 3 * (1+ partie.vague/50)
+        self.recompense = 6 * (1+ partie.vague/50)
 
         self.filiere = filiere
 
