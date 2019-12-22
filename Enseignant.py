@@ -74,23 +74,23 @@ class Enseignant:
         matiere = self.matiere
         if matiere == Matiere.HISTOIRE:
             self.prix = 50 * int(self.tier)
-            self.portee += int(5)
-            self.cadence -= int(0.05)
-            self.degats += int(5)
+            self.portee += 5
+            self.cadence -= 0.05
+            self.degats += 5
         elif matiere == Matiere.MATHS:
             self.prix = 100 * int(self.tier)
             self.portee += int(self.tier *5)
-            self.cadence -= int(0.05)
-            self.degats += int(10)
+            self.cadence -= 0.1
+            self.degats += 10
         elif matiere == Matiere.INFO:
             self.prix = 75 * int(self.tier)
-            self.portee += int(5)
-            self.cadence -= int(self.tier * 0.05)
-            self.degats += int(5)
+            self.portee += 5
+            self.cadence -= 0.05
+            self.degats += 5
         elif matiere == Matiere.SPORT:
             self.prix = 80 * int(self.tier)
-            self.portee += int(10)
-            self.degats += int(10)
+            self.portee += 10
+            self.degats += 10
         
 
 
@@ -118,13 +118,13 @@ class EnseignantUtils:
         :return: Entier : Cadence."""
         cadence = -1
         if matiere == Matiere.HISTOIRE:
-            cadence = 1.0
+            cadence = 1.00
         elif matiere == Matiere.MATHS:
-            cadence = 0.9
+            cadence = 0.90
         elif matiere == Matiere.INFO:
-            cadence = 0.5
+            cadence = 0.50
         elif matiere == Matiere.SPORT:
-            cadence = 3.0
+            cadence = 3
         return cadence
     
     def get_degat(self, matiere):
@@ -158,10 +158,18 @@ class EnseignantUtils:
         return portee
     
     def get_prix_evol(self,matiere, prix, tier):
+        """ Fonction qui retourne le cout de l'amélioration d'un enseignant en fonction de sa matière et de son niveau
+        param enums.Matiere: Matiere
+            int : prix, tier
+        :return int : prix"""
         prix = self.get_prix(matiere) * (tier+1)
         return prix   
     
     def get_portee_evol(self, matiere, portee):
+        """ Fonction qui retourne la portée d'un enseignant après amélioration en fonction de sa matière et de sa portée actuelle
+        param enums.Matiere: Matiere
+            int : portee
+        :return int : portee"""
         matiere 
         if matiere == Matiere.HISTOIRE:
             portee += 5
@@ -174,6 +182,10 @@ class EnseignantUtils:
         return portee
     
     def get_degat_evol(self, matiere, degats):
+        """ Fonction qui retourne les degats d'un enseignant après amélioration en fonction de sa matière et de sa portée actuelle
+        param enums.Matiere: Matiere
+            int : degats
+        :return int : degats"""
         if matiere == Matiere.HISTOIRE:
             degats += 5
         elif matiere == Matiere.MATHS:
@@ -184,20 +196,21 @@ class EnseignantUtils:
             degats += 10
         return degats
     
-    def get_cadence_evol(self, matiere, cadence, tier):
+    def get_cadence_evol(self, matiere, cadence):
+        """ Fonction qui retourne les degats d'un enseignant après amélioration en fonction de sa matière, de sa cadence actuelle
+        param enums.Matiere: Matiere
+            float : cadence
+        :return int : cadence"""
         if matiere == Matiere.HISTOIRE:
             cadence -= 0.05
         elif matiere == Matiere.MATHS:
-            cadence -= 0.05
+            cadence -= 0.1
         elif matiere == Matiere.INFO:
-            cadence -= int(tier * 0.05)
+            cadence -= 0.05
         elif matiere == Matiere.SPORT:
             cadence = cadence
         return cadence
             
-    
-    
-
 
 def cible_ideale(enseignant, cibles):
     """Fonction qui retourne l'etudiant a attaquer en fonction de sa distance avec la tour et la ligne d'arrivée

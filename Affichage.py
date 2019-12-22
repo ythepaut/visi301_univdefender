@@ -201,7 +201,7 @@ def afficher_partie(self, partie):
         if ((enseignant.coords[0]-curseur_x)**2 + (enseignant.coords[1]-curseur_y)**2)**0.5 < 20:
             #Portée
             pygame.draw.circle(self.fenetre, (127, 127, 255), enseignant.coords, enseignant.portee, 1)
-            #Matiere
+            #Matiere et Niveau
             texte_matiere = creer_police(taille=10).render(str(enseignant.matiere.name).capitalize() + "  Niv. " + str(enseignant.tier), True, (0, 0, 0))
             self.fenetre.blit(texte_matiere, (enseignant.coords[0] - texte_matiere.get_width() // 2 - 2, enseignant.coords[1] + 25))
             
@@ -211,19 +211,17 @@ def afficher_partie(self, partie):
             degats = enseignant.degats
             cadence = enseignant.cadence
             prix_evol = enseignantsutils.get_prix_evol(enseignant.matiere,enseignant.prix, enseignant.tier)
-            portee_evol = enseignantsutils.get_portee_evol(enseignant.matiere,portee)
-            degats_evol = enseignantsutils.get_degat_evol(enseignant.matiere,degats)
-            cadence_evol = enseignantsutils.get_cadence_evol(enseignant.matiere, cadence, enseignant.tier)
+            portee_evol = enseignantsutils.get_portee_evol(enseignant.matiere, portee)
+            degats_evol = enseignantsutils.get_degat_evol(enseignant.matiere, degats)
+            cadence_evol = enseignantsutils.get_cadence_evol(enseignant.matiere, cadence)
+            
             text_Amelio = creer_police(taille=10).render("Amélioration : Coût : "+ str(prix_evol), True, (0, 0, 0))
             self.fenetre.blit(text_Amelio, (enseignant.coords[0] - texte_matiere.get_width() // 2 - 2, enseignant.coords[1] + 40))
-           
             txt_description = creer_police(taille=10).render("Portée : " + str(portee) + " --> " + str(portee_evol), True, (0, 0, 0))
             self.fenetre.blit(txt_description, (enseignant.coords[0] - texte_matiere.get_width() // 2 - 2, enseignant.coords[1] + 55))
-            
-            txt_description = creer_police(taille=10).render("Dégat : "+ str(degats) + " --> " + str(degats_evol), True, (0, 0, 0))
+            txt_description = creer_police(taille=10).render("Dégats : "+ str(degats) + " --> " + str(degats_evol), True, (0, 0, 0))
             self.fenetre.blit(txt_description, (enseignant.coords[0] - texte_matiere.get_width() // 2 - 2, enseignant.coords[1] + 70))
-            
-            txt_description = creer_police(taille=10).render("Cadence : "+ str(cadence) + " --> " + str(cadence_evol), True, (0, 0, 0))
+            txt_description = creer_police(taille=10).render("Cadence : "+ str(round(cadence,3)) + " --> " + str(round(cadence_evol,3)), True, (0, 0, 0))
             self.fenetre.blit(txt_description, (enseignant.coords[0] - texte_matiere.get_width() // 2 - 2, enseignant.coords[1] + 85))
 
 
