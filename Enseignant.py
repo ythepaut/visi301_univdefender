@@ -71,53 +71,29 @@ class Enseignant:
     def evoluer(self):
         """Procedure : Augmente le tier de l'enseignant."""
         self.tier += 1
-        self.prix *= int(self.tier * 0.5)
         matiere = self.matiere
         if matiere == Matiere.HISTOIRE:
+            self.prix = 50 * int(self.tier)
             self.portee += int(5)
             self.cadence -= int(0.05)
             self.degats += int(5)
         elif matiere == Matiere.MATHS:
+            self.prix = 100 * int(self.tier)
             self.portee += int(self.tier *5)
             self.cadence -= int(0.05)
             self.degats += int(10)
         elif matiere == Matiere.INFO:
+            self.prix = 75 * int(self.tier)
             self.portee += int(5)
             self.cadence -= int(self.tier * 0.05)
             self.degats += int(5)
         elif matiere == Matiere.SPORT:
+            self.prix = 80 * int(self.tier)
             self.portee += int(10)
             self.degats += int(10)
-    #Fonction pour l'affichage des caractéristiques du prochain tier   
-    def get_prix_evol(self):
-        """Fonction qui retourne le cout de l'évolution' d'un enseignant
-        :return: Entier : prix."""
-        prix = int(self.prix)
-        prix += prix*0.5
-        return prix
-    
-    def get_degat_evol(self):
-        """Fonction qui retourne les degats après l'évolution' d'un enseignant 
-        :return: Entier : degats."""
-        degats= int(self.degats)
-        if self.matiere == Matiere.HISTOIRE:
-            degats += 5
-        elif self.matiere == Matiere.MATHS:
-            degats += 10
-        elif self.matiere == Matiere.INFO:
-            self.degats += 5
-        elif self.matiere == Matiere.SPORT:
-            degats += 10
-        return degats
-    
-    def get_porte_evol(self):
-        """Fonction qui retourne la portée après l'évolution' d'un enseignant 
-        :return: Entier : portee."""
-        portee= int(self.portee)
-        return portee
         
-            
-    
+
+
 class EnseignantUtils:
     """Classe EnseignantUtils : Fonctions utiles."""
 
@@ -180,6 +156,47 @@ class EnseignantUtils:
         elif matiere == Matiere.SPORT:
             portee = 200
         return portee
+    
+    def get_prix_evol(self,matiere, prix, tier):
+        prix = self.get_prix(matiere) * (tier+1)
+        return prix   
+    
+    def get_portee_evol(self, matiere, portee):
+        matiere 
+        if matiere == Matiere.HISTOIRE:
+            portee += 5
+        elif matiere == Matiere.MATHS:
+            portee += 5
+        elif matiere == Matiere.INFO:
+            portee += 5
+        elif matiere == Matiere.SPORT:
+            portee += 10
+        return portee
+    
+    def get_degat_evol(self, matiere, degats):
+        if matiere == Matiere.HISTOIRE:
+            degats += 5
+        elif matiere == Matiere.MATHS:
+            degats += 10
+        elif matiere == Matiere.INFO:
+            degats += 5
+        elif matiere == Matiere.SPORT:
+            degats += 10
+        return degats
+    
+    def get_cadence_evol(self, matiere, cadence, tier):
+        if matiere == Matiere.HISTOIRE:
+            cadence -= 0.05
+        elif matiere == Matiere.MATHS:
+            cadence -= 0.05
+        elif matiere == Matiere.INFO:
+            cadence -= int(tier * 0.05)
+        elif matiere == Matiere.SPORT:
+            cadence = cadence
+        return cadence
+            
+    
+    
 
 
 def cible_ideale(enseignant, cibles):
