@@ -222,7 +222,7 @@ def afficher_partie(self, partie):
                 self.fenetre.blit(txt_description, (enseignant.coords[0] - texte_matiere.get_width() // 2 - 2, enseignant.coords[1] + 55))
                 txt_description = creer_police(taille=10).render("Dégats : "+ str(degats) + " --> " + str(degats_evol), True, (0, 0, 0))
                 self.fenetre.blit(txt_description, (enseignant.coords[0] - texte_matiere.get_width() // 2 - 2, enseignant.coords[1] + 70))
-                txt_description = creer_police(taille=10).render("Cadence : "+ str(round(cadence,3)) + " --> " + str(round(cadence_evol,3)), True, (0, 0, 0))
+                txt_description = creer_police(taille=10).render("Tps entre les tirs : "+ str(round(cadence,3)) + " --> " + str(round(cadence_evol,3)), True, (0, 0, 0))
                 self.fenetre.blit(txt_description, (enseignant.coords[0] - texte_matiere.get_width() // 2 - 2, enseignant.coords[1] + 85))
             else:
                 texte_matiere = creer_police(taille=10).render(str(enseignant.matiere.name).capitalize() + "  Niv. Max " , True, (0, 0, 0))
@@ -231,7 +231,7 @@ def afficher_partie(self, partie):
                 self.fenetre.blit(txt_description, (enseignant.coords[0] - texte_matiere.get_width() // 2 - 2, enseignant.coords[1] + 40))
                 txt_description = creer_police(taille=10).render("Dégats : "+ str(degats), True, (0, 0, 0))
                 self.fenetre.blit(txt_description, (enseignant.coords[0] - texte_matiere.get_width() // 2 - 2, enseignant.coords[1] + 55))
-                txt_description = creer_police(taille=10).render("Cadence : "+ str(round(cadence,3)) , True, (0, 0, 0))
+                txt_description = creer_police(taille=10).render("Tps entre les tirs : "+ str(round(cadence,3)) , True, (0, 0, 0))
                 self.fenetre.blit(txt_description, (enseignant.coords[0] - texte_matiere.get_width() // 2 - 2, enseignant.coords[1] + 70))
 
 
