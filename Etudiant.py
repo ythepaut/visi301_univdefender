@@ -92,7 +92,7 @@ class Etudiant:
             elif self.filiere == Filiere.MPC:
                 multiplicateur = resistant
             elif self.filiere == Filiere.STAPS:
-                multiplicateur = faible
+                multiplicateur = tres_faible
         elif matiere == Matiere.SPORT:
             if self.filiere == Filiere.MIST:
                 multiplicateur = faible

@@ -273,10 +273,10 @@ def afficher_partie(self, partie):
             point_fort = "Rien"
             point_faible = "Rien"
         elif partie.matiere_courante == Matiere.INFO:
-            point_fort = "MPC"
+            point_fort = "MPC/STAPS"
             point_faible = "MIST"
         elif partie.matiere_courante == Matiere.MATHS:
-            point_fort = "MIST"
+            point_fort = "MIST/STAPS"
             point_faible = "MPC"
         elif partie.matiere_courante == Matiere.SPORT:
             point_fort = "MIST/MPC"
