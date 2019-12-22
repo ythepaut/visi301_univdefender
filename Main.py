@@ -97,14 +97,17 @@ def ecoute_evenements(evenements, musique, carte):
                             affichage.afficher_message("Enseignant ajouté.", 2)
                         else:
                             enseignant = partie.get_enseignant(emplacement)
-                            if partie.argent >= enseignantutils.get_prix_evol(enseignant.matiere, enseignant.prix, enseignant.tier):
-                                enseignant.evoluer()
-                                
-                                partie.argent -= enseignant.prix
-                                
-                                affichage.afficher_message("Enseignant évolué.", 2)
+                            if enseignant.tier < 5:
+                                if partie.argent >= enseignantutils.get_prix_evol(enseignant.matiere, enseignant.prix, enseignant.tier):
+                                    enseignant.evoluer()
+                                    
+                                    partie.argent -= enseignant.prix
+                                    
+                                    affichage.afficher_message("Enseignant évolué.", 2)
+                                else:
+                                    affichage.afficher_message("Il vous faut " + str(enseignantutils.get_prix_evol(enseignant.matiere, enseignant.prix, enseignant.tier)) + " pour améliorer.", 2)
                             else:
-                                affichage.afficher_message("Il vous faut " + str(enseignantutils.get_prix_evol(enseignant.matiere, enseignant.prix, enseignant.tier)) + " pour améliorer.", 2)
+                                affichage.afficher_message("Niveau max de l'enseignant atteint", 2)
                     else:
                         affichage.afficher_message("Veuillez cliquer sur un emplacement valide", 2)
                 else:
