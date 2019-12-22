@@ -35,8 +35,8 @@ enseignantutils = EnseignantUtils()
 #Musique
 pygame.mixer.music.load(os.path.join("ressources", "audio", "musique.wav"))
 pygame.mixer.music.play(-1, 0.0)
-pygame.mixer.music.set_volume(0.0)
-musique = False
+pygame.mixer.music.set_volume(0.6)
+musique = True
 
 
 execution = True
@@ -71,7 +71,7 @@ def ecoute_evenements(evenements, musique, carte):
                 pygame.mixer.music.set_volume(0.0)
             else:
                 musique = True
-                pygame.mixer.music.set_volume(0.3)
+                pygame.mixer.music.set_volume(0.6)
 
         #Vitesse
         elif evenement.type == pygame.KEYDOWN and evenement.key == pygame.K_LEFT:
