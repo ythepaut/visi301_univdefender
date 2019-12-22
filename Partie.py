@@ -136,7 +136,7 @@ class Partie():
                     self.evenement = EvenementsAleatoires.RETOUR_VACANCES
                     msg_evenement = " - Retour de vacances ! Les etudiants sont en forme et vont plus vite."
 
-                self.affichage.afficher_message("Nouvelle vague ! (" + str(self.vague) + ")" + msg_evenement, 3)
+                self.affichage.afficher_message("Nouvelle vague ! (Vague " + str(self.vague) + ")" + msg_evenement, 3)
 
                 effectifs = effectifs_vague(self.vague)
 
