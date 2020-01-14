@@ -2,7 +2,7 @@
 
 Les élèves de l'université ont décidé de se rebeller suite à leurs mauvaises notes et s'attaquent à la scolarité pour modifier les modifier et valider leur semestre. Les professeurs sont les derniers qui les en sépare...
 
-[Screenshot](http://server.ythepaut.com/share/UnivDefender.png)
+![Screenshot](http://server.ythepaut.com/share/UnivDefender.png)
 
 # Comment jouer ?
 
